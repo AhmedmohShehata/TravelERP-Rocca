@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TravelERP.Models.BillReligious>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h3 class="text-center ">تقرير مبيعات لفتره</h3>
+
+        </div>
+        <label class="control-label font-weight-bold">من تاريخ</label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+        <label class="control-label font-weight-bold ">الى تاريخ</label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@
+
+<table class="table table-hover" id="Esal">
+    <thead>
+        <tr class="table-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.BillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplier.Name)
+            </th>
+            <th>
+                @Html.DisplayName("بيان")
+            </th>
+            <th>
+                @Html.DisplayName("س النت")
+            </th>
+            <th>
+                @Html.DisplayName("س بيع")
+            </th>
+            <th>
+                @Html.DisplayName("عموله")
+            </th>
+            <th>
+                @Html.DisplayName("ع موظف")
+            </th>
+            <th>
+                @Html.DisplayName("الربح")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrSupplier.Name) -
+                    @Html.DisplayFor(modelItem => item.CustomerSupplier.Name) -
+                    @Html.DisplayFor(modelItem => item.Commnets) -
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE0.M0_Name) -
+                    @Html.DisplayFor(modelItem => item.MenuLE1.M1_Name) -
+                    @Html.DisplayFor(modelItem => item.MenuLE2.M2_Name) -
+
+                </td>
+                <td>
+                    @((item.CustomerPrice))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="  table-dark  rounded " style="width:400px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى المدفوع</td>
+                    <td class="font-weight-bold">@((Model.Sum(i => i.CustomerPrice))) @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

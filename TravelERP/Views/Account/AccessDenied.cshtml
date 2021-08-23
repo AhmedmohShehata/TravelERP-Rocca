@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "حجب الدخول للصفحه";
+}
+
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">نأسف انت لا تمتلك الصلاحيات للدخول على هذه الصفحه.....</p>
+</header>
+<div class="mt-5">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">العوده للصفحه الرئيسيه</a>
+</div>

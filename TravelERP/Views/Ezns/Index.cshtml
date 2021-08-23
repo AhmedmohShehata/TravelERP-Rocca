@@ -1,0 +1,217 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.EznsHomePageViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>الصفحه الرئيسيه للاذون</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء إذن لمصروف</a>
+    <a asp-action="CreateEFE" class="btn btn-primary">إنشاء إذن لمورد او وكيل</a>
+    <a asp-action="CreateGroup" class="btn btn-primary"> إنشاء إذن لمورد او وكيل (مجموعه)</a>
+    <a asp-action="CreateEFEReligious" class="btn btn-primary">إنشاء إذن للسياحه الدينيه</a>
+
+</p>
+
+
+<table class="table table-hover display" id="Ezn" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("#")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EznDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountWithdrawn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+            {
+                <th width="120px">عمليات</th>
+
+            }
+            else
+            {
+                <th width="80px">عمليات</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EznId)
+                    </td>
+                    <td>
+                        @(item.EznDate.ToShortDateString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.CustomerOrSupplier.Name) @Html.DisplayFor(modelItem => item.CustomerSupplier.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuLE0.M0_Name)  @Html.DisplayFor(modelItem => item.MenuLE1.M1_Name) @Html.DisplayFor(modelItem => item.MenuLZ0.M0_Name) @Html.DisplayFor(modelItem => item.MenuLZ1.M1_Name) @Html.DisplayFor(modelItem => item.MenuLZ1.M1_Name)  @Html.DisplayFor(modelItem => item.ExpenseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountWithdrawn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentMethod.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && (item.EznDate.Date == @ViewBag.DateTimeNow) && !User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+
+                        <a asp-action="Details" asp-route-id="@item.EznId">معلومات</a> |
+                        <a asp-action="PrintEzn" asp-route-id="@item.EznId">طباعه</a>
+                    </td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+@section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && !User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Ezn').DataTable({
+                    ajax: {
+                        url: "/api/Ezns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "eznId" },
+                        { data: "eznDate" },
+                        { data: "name" },
+                        { data: "expenseName" },
+                        { data: "amountWithdrawn" },
+                        { data: "paymentMethod" },
+                        {
+                            data: "id", render: function (data, type, Ezns)
+                            {
+                                if (Ezns.eznDate === '@ViewBag.DateTimeNow') {
+                                    return "<a href='Ezns//Details/" + Ezns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Ezns/PrintEzn/" + Ezns.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>" + " | " + "<a href='/Ezns/Edit/" + Ezns.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>";
+                                }
+                                else
+                                {
+                                    return "<a href='/Ezns/Details/" + Ezns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Ezns/PrintEzn/" + Ezns.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>";
+                                }
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Ezn').DataTable({
+                    ajax: {
+                        url: "/api/Ezns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "eznId" },
+                        { data: "eznDate" },
+                        { data: "name" },
+                        { data: "expenseName" },
+                        { data: "amountWithdrawn" },
+                        { data: "paymentMethod" },
+                        {
+                            data: "id", render: function (data, type, Ezns) {
+
+                                return "<a href='/Ezns/Details/" + Ezns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Ezns/PrintEzn/" + Ezns.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>" + " | " + "<a href='/Ezns/Edit/" + Ezns.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>" + " | " + "<a href='/Ezns/Delete/" + Ezns.id + "'><i class='material-icons' title='إلغاء' Style='color:red'>cancel</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && !User.IsInRole("تعديلات المدير") && !User.IsInRole("تعديلات"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Ezn').DataTable({
+                    ajax: {
+                        url: "/api/Ezns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "eznId" },
+                        { data: "eznDate" },
+                        { data: "name" },
+                        { data: "expenseName" },
+                        { data: "amountWithdrawn" },
+                        { data: "paymentMethod" },
+
+                        {
+                            data: "id", render: function (data, type, Ezns) {
+
+                                return "<a href='/Ezns/Details/" + Ezns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Ezns/PrintEzn/" + Ezns.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+
+
+}
+

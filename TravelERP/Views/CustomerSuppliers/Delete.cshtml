@@ -1,0 +1,68 @@
+﻿@model TravelERP.Models.CustomerSupplier
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من عمليه الحذف</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassportNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportExDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassportExDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Adrress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adrress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrSupplierId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrSupplier.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-danger">العوده للقائمه الرئيسيه</a>
+    </form>
+</div>

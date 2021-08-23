@@ -1,0 +1,386 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light fixed-top rounded bg-custom-2">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand text-white font-weight-bold">TRAVEL ERP</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbarNavDropdown">
+            @if (signInManager.IsSignedIn(User))
+            {
+            <ul class="navbar-nav">
+
+                <!-- Level one dropdown -->
+                <li class="nav-item dropdown">
+                    <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link text-white dropdown-toggle">القوائم</a>
+                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="CustomerSuppliers" asp-action="Index">العملاء والموردين</a>
+                            </li>
+                        }
+                        <!-- Level two dropdown-->
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("القوائم")))
+                        {
+                            <li class="dropdown-divider"></li>
+
+                            <li class="dropdown-submenu">
+                                <a id="dropdownMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">الايصالات</a>
+                                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu  border-0 shadow">
+                                    <li>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLE0" asp-action="Index">قائمه ايصالات رئيسيه</a>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLE1" asp-action="Index">قائمه ايصالات 1</a>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLE2" asp-action="Index">قائمه ايصالات 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- Level two dropdown-->
+                            <li class="dropdown-submenu">
+                                <a id="dropdownMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">الاذون</a>
+                                <ul aria-labelledby="dropdownMenu3" class="dropdown-menu   border-0 shadow">
+                                    <li>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLZ0" asp-action="Index">قائمه اذون رئيسيه</a>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLZ1" asp-action="Index">قائمه اذون 1</a>
+                                        <a class="nav-link" asp-area="" asp-controller="MenuLZ2" asp-action="Index">قائمه اذون 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير")))
+                        {
+                            <li class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="PaymentMethods" asp-action="Index">طرق الدفع</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportMethods" asp-action="Index">وسيله السفر</a>
+                            </li>
+
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="OpeningBalances" asp-action="Index">الارصده الافتتاحيه</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <!-- End Level one -->
+
+                <!-- الفواتير -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        الفواتير
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("طيران (فواتير)")))
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="BillAirLines" asp-action="Index">فواتير الطيران</a>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة داخلية (فواتير)")))
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="BillDomestics" asp-action="Index">فواتير سياحه داخليه</a>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة خارجية (فواتير)")))
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="BillForeigns" asp-action="Index">فواتير سياحه خارجية</a>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة دينية (فواتير)")))
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="BillReligious" asp-action="Index">فواتير سياحه دينية</a>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("تأشيرات (فواتير)")))
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="BillVisas" asp-action="Index">فواتير تأشيرات</a>
+                        }
+                    </div>
+                </li>
+
+                <!-- الايصالات -->
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("إيصالات")))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Esals" asp-action="Index">الإيصالات</a>
+                    </li>
+                }
+
+                <!-- الاذون -->
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("إذون صرف")))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Ezns" asp-action="Index">الإذون</a>
+                    </li>
+                }
+
+                <!-- التقارير -->
+                <!-- Level one dropdown -->
+                <li class="nav-item dropdown">
+                    <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-white">التقارير</a>
+                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("دفتر اليوميه")))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="StatementDate">دفتر اليوميه</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="StatementBankDate">دفتر اليوميه بنوك</a>
+                            </li>
+                        }
+                        <li class="dropdown-divider"></li>
+                        <!-- Level two dropdown-->
+                        <li class="dropdown-submenu">
+                            <a id="dropdownMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">التقارير المفصله</a>
+                            <ul aria-labelledby="dropdownMenu2" class="dropdown-menu  border-0 shadow">
+                                <li>
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("طيران (فواتير)") || User.IsInRole("سياحة داخلية (فواتير)") || User.IsInRole("تأشيرات (فواتير)")))
+                                    {
+                                        <a class="nav-link bg-light" asp-area="" asp-controller="AllBills" asp-action="CXStatementDate">تقرير شامل</a>
+                                    }
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة دينية (فواتير)")))
+                                    {
+                                        <a class="nav-link" asp-area="" asp-controller="BillReligious" asp-action="CSStatementDate">سياحة دينية</a>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Level two dropdown-->
+                        <li class="dropdown-submenu">
+                            <a id="dropdownMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">التقارير المجمعه</a>
+                            <ul aria-labelledby="dropdownMenu3" class="dropdown-menu   border-0 shadow">
+                                <li>
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("طيران (فواتير)") || User.IsInRole("سياحة داخلية (فواتير)") || User.IsInRole("تأشيرات (فواتير)")))
+                                    {
+                                        <a class="nav-link bg-light" asp-area="" asp-controller="AllBills" asp-action="CXTStatementDate">تقرير شامل</a>
+                                    }
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة دينية (فواتير)")))
+                                    {
+                                        <a class="nav-link" asp-area="" asp-controller="BillReligious" asp-action="CXTStatementDate">سياحة دينية</a>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("إيصالات")))
+                        {
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="MenuLE1Date">تقرير قوائم 1</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="MenuLE2Date">تقرير قوائم 2</a>
+                            </li>
+                        }
+                        @*@if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير")))
+                        {
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CXTStatementAllDate">تقرير مجمع لكل الشركات</a>
+                            </li>
+                        }*@
+                        @*@if (signInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="AirLinesStatementDate">تقرير موردين لكل الشركات</a>
+                            </li>
+                        }*@
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="BillAirLines" asp-action="AirLinesStatementDate">تقرير طيران</a>
+                            </li>
+                        }
+
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("إيصالات")))
+                        {
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Esals" asp-action="EsalsDate">تقرير إيصالات الاستلام</a>
+                            </li>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("إذون صرف")))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Ezns" asp-action="EznsDate">تقرير اذون الصرف</a>
+                            </li>
+                        }
+
+                        @*<li class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="VisaPendingUserDate">تقرير الـ Pending للموظف</a>
+                        </li>
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع")))
+                        {
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="VisaPendingCompanyDate">تقرير الـ Pending للشركه</a>
+                            </li>
+                        }*@
+
+                    </ul>
+                </li>
+
+                <!-- End Level one -->
+                <!-- العمولات -->
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("العمولات")))
+                {
+                    <!-- Level one dropdown -->
+                    <li class="nav-item dropdown">
+                        <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-white">العمولات</a>
+                        <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+                            @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("طيران (فواتير)") || User.IsInRole("سياحة داخلية (فواتير)") || User.IsInRole("تأشيرات (فواتير)")))
+                            {
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CommissionDate">عمولات الموظف</a>
+                                </li>
+                            }
+                            @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع")))
+                            {
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CommissionDateAll">عمولات لجميع الموظفين</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CommissionDateTotal">تقرير مجمع للعمولات</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CommissionByUserDate">تقرير عمولات باسم الموظف</a>
+                                </li>
+
+                            }
+
+                        </ul>
+                    </li>
+                    <!-- End Level one -->
+                }
+
+
+                <!-- المبيعات -->
+                <!-- Level one dropdown -->
+                <li class="nav-item dropdown">
+                    <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-white">المبيعات</a>
+                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+                        <!-- Level two dropdown-->
+                        <li class="dropdown-submenu">
+                            <a id="dropdownMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">مبيعات الموظف</a>
+                            <ul aria-labelledby="dropdownMenu2" class="dropdown-menu  border-0 shadow">
+                                <li>
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("طيران (فواتير)")))
+                                    {
+                                        <a class="nav-link bg-light" asp-area="" asp-controller="AllBills" asp-action="UserBillsDate">مبيعات شامل</a>
+                                    }
+                                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع") || User.IsInRole("سياحة دينية (فواتير)")))
+                                    {
+                                        <a class="nav-link" asp-area="" asp-controller="BillReligious" asp-action="UserBillsDate">سياحة دينية</a>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع")))
+                        {
+                            <!-- Level two dropdown-->
+                            <li class="dropdown-submenu">
+                                <a id="dropdownMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">مبيعات لجميع الموظفين</a>
+                                <ul aria-labelledby="dropdownMenu3" class="dropdown-menu   border-0 shadow">
+                                    <li>
+                                        <a class="nav-link bg-light" asp-area="" asp-controller="AllBills" asp-action="BillsAllDate">مبيعات شامل</a>
+                                        <a class="nav-link" asp-area="" asp-controller="BillReligious" asp-action="BillsAllDate">سياحة دينية</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع")))
+                        {
+                            <!-- Level two dropdown-->
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="BillsAllByUserDate">مبيعات باسم الموظف</a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+                <!-- End Level one -->
+                <!-- الاداره -->
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير")))
+                {
+                    <!-- Level one dropdown -->
+                    <li class="nav-item dropdown">
+                        <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-white">الاداره</a>
+                        <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Administration" asp-action="ListRoles">الصلاحيات</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Administration" asp-action="ListUsers">المستخدمين</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="UsersDetails" asp-action="Index">نسبه العمولات</a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="AllStatementStart">ارصده جميع الشركات</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="CommissionDateCompanies">عمولات الموظفين لجميع الشركات</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="VisaPendingAllDate">تقرير الـ Pending للشركات</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="AllBills" asp-action="VisaApprovedAllDate">تقرير الـ Approved للشركات</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- End Level one -->
+                }
+
+
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("المرتبات")))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            المرتبات
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                            <a class="dropdown-item" asp-area="" asp-controller="SalaryAddandCuts" asp-action="Index">العمولات والخصومات</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="SalaryDatas" asp-action="Index">ربط المرتبات</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="SalaryDatas" asp-action="SalaryReportDate">تقرير المرتبات</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="SalaryAttendances" asp-action="Index">جهاز البصمه</a>
+                        </div>
+                    </li>
+                }
+
+
+
+                @if (signInManager.IsSignedIn(User) && (User.IsInRole("مطور")))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            مطور
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                            <a class="dropdown-item" asp-area="" asp-controller="Companies" asp-action="Index">الشركات</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="CustomerOrSuppliers" asp-action="Index">العملاء او الموردين</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="NonSuppliers" asp-action="Index">فصل الموردين</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Developers" asp-action="Index">رسائل المطور</a>
+
+                        </div>
+                    </li>
+                }
+
+            </ul>
+            }
+        </div>
+        <div>
+            @await Html.PartialAsync("_LoginPartial")
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,59 @@
+﻿@model TravelERP.Models.SalaryAddandCut
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>معلومات</h2>
+
+<div>
+    <h4>العمولات والخصومات</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FromDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ToDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Omra_Add)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Omra_Add)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bonus_Add)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bonus_Add)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Whatsapp_Cut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Whatsapp_Cut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Other_Cut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Other_Cut)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-outline-primary">العوده للقائمه الرئيسيه</a>
+</div>

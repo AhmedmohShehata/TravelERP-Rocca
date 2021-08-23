@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TravelERP.Models.TransportMethodTrip>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>وسيله السفر</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"> إنشاء وسيله السفر لرحله</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuLE0Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuLE1Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuLE2Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatsCount)
+            </th>
+            <th>
+                @Html.DisplayName("وسيله النقل")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE0.M0_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE1.M1_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE2.M2_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatsCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsBus)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿@model TravelERP.Models.BillVisa
+
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+            <h4 class="text-center text-info">فاتوره تأشيره رقم @Html.DisplayFor(model => model.BillId)</h4>
+        </div>
+        <hr />
+    </div>
+</div>
+<form asp-action="BillApproved">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CustomerOrSupplierId" />
+    <input type="hidden" asp-for="AdultN" />
+    <input type="hidden" asp-for="BillDate" />
+    <input type="hidden" asp-for="BillId" />
+    <input type="hidden" asp-for="BillState" />
+    <input type="hidden" asp-for="ChildN" />
+    <input type="hidden" asp-for="Commnets" />
+    <input type="hidden" asp-for="CompanyID" />
+    <input type="hidden" asp-for="CustomerPrice" />
+    <input type="hidden" asp-for="CustomerSupplierId" />
+    <input type="hidden" asp-for="EMPCommission" />
+    <input type="hidden" asp-for="MenuLE0Id" />
+    <input type="hidden" asp-for="MenuLE1Id" />
+    <input type="hidden" asp-for="MenuLE2Id" />
+    <input type="hidden" asp-for="PassportNo" />
+    <input type="hidden" asp-for="TicketExportId" />
+    <input type="hidden" asp-for="UserId" />
+
+    <div class="form-group">
+        <label asp-for="NetPrice" class="label-info"></label>
+        <input type="text" asp-for="NetPrice" class="form-control text-right" />
+    </div>
+
+    <div class="form-group">
+
+        <button type="submit" class="btn btn-success">تحويل لـ Approved</button>
+        <button type="button" class="btn btn-secondary" style="width:20%" data-dismiss="modal">Close</button>
+
+    </div>
+
+</form>

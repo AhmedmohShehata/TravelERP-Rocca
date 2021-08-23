@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.Transactions>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h5 class="text-center ">تقرير عمولات شامل لموظفين جميع الشركات </h5>
+
+        </div>
+        <label class="control-label font-weight-bold">لتاريخ </label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString()
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("الاسم")
+            </th>
+            <th>
+                @Html.DisplayName("العموله")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(a => a.Name3 != "آثار للسياحة والسفريات ذ.م.م"))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statement)
+                </td>
+                <td>
+                    @(item.Commission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="width:500px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى العمولات</td>
+                    <td class="font-weight-bold">@(Model.Where(a => a.Name3 != "آثار للسياحة والسفريات ذ.م.م").Sum(i => i.Commission)) جنيه</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="col p-4" style="max-width:600px; margin:auto">
+    <div class="form-control border-info  shadow-sm rounded  h-75 ">
+        <h5 class="text-center ">عمولات آثار للسياحة والسفريات ذ.م.م </h5>
+
+    </div>
+</div>
+
+@*Head End*@<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("الاسم")
+            </th>
+            <th>
+                @Html.DisplayName("العموله")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(a => a.Name3 == "آثار للسياحة والسفريات ذ.م.م"))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statement)
+                </td>
+                <td>
+                    @(item.Commission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="width:500px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى العمولات</td>
+                    <td class="font-weight-bold">@(Model.Where(a => a.Name3 == "آثار للسياحة والسفريات ذ.م.م").Sum(i => i.Commission)) درهم</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+

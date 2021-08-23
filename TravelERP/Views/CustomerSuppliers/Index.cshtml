@@ -1,0 +1,174 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.CustomerSupplierViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>العملاء والموردين</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء عميل او شركه (مورد)</a>
+</p>
+<table class="table table-hover" id="CSTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassportNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerOrSupplier)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrSupplier.Name)
+                </td>
+                <td>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a>
+                    }
+                </td>
+
+            </tr>
+        }*@
+    </tbody>
+</table>
+@section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && !User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#CSTable').DataTable({
+                    ajax: {
+                        url: "/api/CustomerSuppliers",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "name" },
+                        { data: "phoneNumber1" },
+                        { data: "phoneNumber2" },
+                        { data: "passportNo" },
+                        { data: "customerOrSupplier" },
+                        {
+                            data: "id", render: function (data, type, CS)
+                            {
+                                    return "<a href='/CustomerSuppliers/Details/" + CS.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/CustomerSuppliers/Edit/" + CS.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('#CSTable').DataTable({
+                    ajax: {
+                        url: "/api/CustomerSuppliers",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "name" },
+                        { data: "phoneNumber1" },
+                        { data: "phoneNumber2" },
+                        { data: "passportNo" },
+                        { data: "customerOrSupplier" },
+                        {
+                            data: "id", render: function (data, type, CS) {
+
+                                return "<a href='/CustomerSuppliers/Details/" + CS.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/CustomerSuppliers/Edit/" + CS.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>" + " | " + "<a href='/CustomerSuppliers/Delete/" + CS.id + "'><i class='material-icons' title='إلغاء' Style='color:red'>cancel</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && !User.IsInRole("تعديلات المدير") && !User.IsInRole("تعديلات"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('#CSTable').DataTable({
+                    ajax: {
+                        url: "/api/CustomerSuppliers",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "name" },
+                        { data: "phoneNumber1" },
+                        { data: "phoneNumber2" },
+                        { data: "passportNo" },
+                        { data: "customerOrSupplier" },
+                        {
+                            data: "id", render: function (data, type, CS) {
+
+                                return "<a href='/CustomerSuppliers/Details/" + CS.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+}

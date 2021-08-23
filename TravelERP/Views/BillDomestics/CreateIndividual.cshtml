@@ -1,0 +1,258 @@
+﻿@model TravelERP.Models.BillDomestic
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>فاتوره سياحه داخليه فردى</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateIndividual">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerOrSupplierId" class="control-label"></label>
+                <select asp-for="CustomerOrSupplierId" id="COS" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerSupplierId" class="control-label"></label>
+                <select asp-for="CustomerSupplierId" id="CS" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE1Id" class="control-label"></label>
+                <select asp-for="MenuLE1Id" id="MenuLE1" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE1Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE2Id" class="control-label"></label>
+                <select asp-for="MenuLE2Id" id="MenuLE2" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","M2_Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE2Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="TicketExportId" class="control-label"></label>
+                <select asp-for="TicketExportId" class="form-control" asp-items="ViewBag.TicketExportId"></select>
+                <span asp-validation-for="TicketExportId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="AdultN" class="control-label"></label>
+                <input asp-for="AdultN" class="form-control" />
+                <span asp-validation-for="AdultN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="ChildN" class="control-label"></label>
+                <input asp-for="ChildN" class="form-control" />
+                <span asp-validation-for="ChildN" class="text-danger"></span>
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="TransportMethodId" class="control-label"></label>
+                <select asp-for="TransportMethodId" class="form-control" asp-items="ViewBag.TransportMethodId"></select>
+                <span asp-validation-for="TransportMethodId" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="TMNetPrice" class="control-label"></label>
+                    <input asp-for="TMNetPrice" class="form-control NetPrice" />
+                    <span asp-validation-for="TMNetPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="TMCustomerPrice" class="control-label"></label>
+                    <input asp-for="TMCustomerPrice" class="form-control CustomerPrice" />
+                    <span asp-validation-for="TMCustomerPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Excursion" class="control-label"></label>
+                <input asp-for="Excursion" class="form-control" />
+                <span asp-validation-for="Excursion" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="ENetPrice" class="control-label"></label>
+                    <input asp-for="ENetPrice" class="form-control NetPrice" />
+                    <span asp-validation-for="ENetPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="ECustomerPrice" class="control-label"></label>
+                    <input asp-for="ECustomerPrice" class="form-control CustomerPrice" />
+                    <span asp-validation-for="ECustomerPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="DomesticTransportMethod" class="control-label"></label>
+                <input asp-for="DomesticTransportMethod" class="form-control" />
+                <span asp-validation-for="DomesticTransportMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="DTMNetPrice" class="control-label"></label>
+                    <input asp-for="DTMNetPrice" class="form-control NetPrice" />
+                    <span asp-validation-for="DTMNetPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="DTMCustomerPrice" class="control-label"></label>
+                    <input asp-for="DTMCustomerPrice" class="form-control CustomerPrice" />
+                    <span asp-validation-for="DTMCustomerPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Accommodation" class="control-label"></label>
+                <input asp-for="Accommodation" class="form-control" />
+                <span asp-validation-for="Accommodation" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="ANetPrice" class="control-label"></label>
+                    <input asp-for="ANetPrice" class="form-control NetPrice" />
+                    <span asp-validation-for="ANetPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label asp-for="ACustomerPrice" class="control-label"></label>
+                    <input asp-for="ACustomerPrice" class="form-control CustomerPrice" />
+                    <span asp-validation-for="ACustomerPrice" class="text-danger"></span>
+                </div>
+            </div>
+
+            <hr />
+            <div class="form-group row">
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label class="control-label">اجمالى سعر النت</label>
+                    <span id="TotalNetPrice" class="form-control"></span>
+                    <span asp-validation-for="NetPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <span style="color:red">*</span> <label class="control-label">اجمالى سعر البيع</label>
+                    <span  id="TotalCustomerPrice" class="form-control" ></span>
+                    <span asp-validation-for="CustomerPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="TicketFrom" class="control-label"></label>
+                <input asp-for="TicketFrom" class="form-control" />
+                <span asp-validation-for="TicketFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketTo" class="control-label"></label>
+                <input asp-for="TicketTo" class="form-control" />
+                <span asp-validation-for="TicketTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Commnets" class="control-label"></label>
+                <input asp-for="Commnets" class="form-control" />
+                <span asp-validation-for="Commnets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        $("#MenuLE1").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE2";
+            var ddsource = "#MenuLE1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE2").html(items);
+            })
+        });
+    });
+
+</script>
+<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        //iterate through each textboxes and add keyup
+        //handler to trigger sum event
+        $(".NetPrice").each(function () {
+
+            $(this).keyup(function () {
+                TotalNetPrice();
+            });
+        });
+        $(".CustomerPrice").each(function () {
+
+            $(this).keyup(function () {
+                TotalCustomerPrice();
+            });
+        });
+
+
+    });
+
+    function TotalNetPrice() {
+
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".NetPrice").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#TotalNetPrice").html(sum.toFixed(2));
+    }
+
+    function TotalCustomerPrice() {
+
+        var sum = 0;
+        //iterate through each textboxes and add the values
+        $(".CustomerPrice").each(function () {
+
+            //add only if the value is number
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+
+        });
+        //.toFixed() method will roundoff the final sum to 2 decimal places
+        $("#TotalCustomerPrice").html(sum.toFixed(2));
+    }
+
+</script>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TravelERP.Models.Company>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>قائمه الشركات والفروع </h2>
+
+<p>
+    <a asp-action="Create">إنشاء</a>
+</p>
+<table class="table table-hover" id="Company">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company_Name)
+            </td>
+            <td>
+                <img class="img-rounded" src="@Url.Content("~/" + TravelERP.Properties.Resources.ImgFolder + "/" + item.CompanyLogo )" width="150" height="90" />
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section scripts
+    {
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Company').DataTable();
+
+        });
+        $('#Company_filter').animate({
+            position: 'absolute',
+            left: '30px' });
+    </script>
+}
+

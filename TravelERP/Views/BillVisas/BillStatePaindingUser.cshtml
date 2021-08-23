@@ -1,0 +1,122 @@
+﻿@model IEnumerable<TravelERP.Models.BillVisa>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="mb-3">فواتير التأشيرات ( حاله Pending )</h2>
+
+<table class="table table-hover display" id="BillVisas" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplier.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPrice)
+            </th>
+            <th>
+                @Html.DisplayName("الشركه المنفذه")
+            </th>
+            <th width="80px">عمليات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td>
+                    @(item.BillDate.Date.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerSupplier.Name)  - @Html.DisplayFor(modelItem => item.Commnets)  - @Html.DisplayFor(modelItem => item.PassportNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketExport.Name)
+                </td>
+                <td>
+                    <button type="submit" data-id="@item.Id" class="btn btn-info btn-sm anchorDetail" data-toggle="modal" data-target="#myModal">... Pending</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog-centered modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-light justify-content-center">
+                <h5 class="modal-title">تحويل لـ Approved</h5>
+            </div>
+            <div class="modal-body justify-content-center" id="myModalContent">
+            </div>
+            <div class="modal-footer justify-content-center">
+                <span class="font-weight-bold text-danger">*</span><span class="text-info font-weight-bold">يتم تعديل الفاتوره لتاريخ اليوم عند التحويل الى Approved</span>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var table = $('#BillVisas').DataTable({
+                responsive: true,
+                "order": [[0, "desc"]]
+
+            });
+        });
+    </script>
+        <script>
+            var PostBackURL = '/BillVisas/BillApproved';
+            $(document).ready(function () {
+                $(document).on("click", ".anchorDetail",function (event) {
+                    var $buttonClicked = $(this);
+                    var id = $buttonClicked.attr('data-id');
+                    $.ajax({
+                        type: "GET",
+                        url: PostBackURL,
+                        contentType: "application/json; charset=utf-8",
+                        data: { "Id": id },
+                        cache: false,
+                        dataType: "html",
+                        success: function (data) {
+                            $('#myModalContent').html(data);
+                            $('#myModal').modal('show');
+                        },
+                        error: function () {
+                            alert("Dynamic content load failed");
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+

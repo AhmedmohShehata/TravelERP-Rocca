@@ -1,0 +1,297 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.AllCompanyProfitViewModel>
+
+@{
+    ViewData["Title"] = "AllStatement";
+}
+
+    <div class="row align-items-center p-3">
+        <div class="col">
+        </div>
+        <div class="col-md-6">
+            <div class="form-control bg-light shadow-sm rounded  h-75 ">
+                <h5 class="text-center "> تقرير مجمع للخزينه والمبيعات</h5>
+
+            </div>
+        </div>
+        <div class=" col">
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BillToday)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BillProfitThisMonth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StatementDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(a => a.CompanyName == "آثار للسياحه"))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                @if (item.BillToday == (float)Convert.ToDouble(TempData["AtharBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["AtharBillTodayUpdate"]) == 0)
+                {
+                    <td>
+                        @(item.BillToday)
+                    </td>
+                    <td>
+                        @(item.BillProfitThisMonth)
+                    </td>
+
+                }
+                else
+                {
+                    <td class="font-weight-bold text-danger">
+                        @(item.BillToday)
+                    </td>
+                    <td class="font-weight-bold text-danger">
+                        @(item.BillProfitThisMonth)
+                    </td>
+                }
+                @if (item.StatementDate == (float)Convert.ToDouble(TempData["AtharStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["AtharStatementDateUpdate"]) == 0)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatementDate)
+                    </td>
+                }
+                else
+                {
+                    <td class="font-weight-bold text-danger">
+                        @Html.DisplayFor(modelItem => item.StatementDate)
+                    </td>
+                }
+            </tr>
+            }
+
+            @foreach (var item in Model.Where(a => a.CompanyName == "آثار للسياحة - فرع الغرفه"))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            @if (item.BillToday == (float)Convert.ToDouble(TempData["AtharManshiaBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["AtharManshiaBillTodayUpdate"]) == 0)
+            {
+                <td>
+                    @(item.BillToday)
+                </td>
+                <td>
+                    @(item.BillProfitThisMonth)
+                </td>
+
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @(item.BillToday)
+                </td>
+                <td class="font-weight-bold text-danger">
+                    @(item.BillProfitThisMonth)
+                </td>
+            }
+            @if (item.StatementDate == (float)Convert.ToDouble(TempData["AtharManshiaStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["AtharManshiaStatementDateUpdate"]) == 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+        </tr>
+            }
+
+
+            @foreach (var item in Model.Where(a => a.CompanyName == "نايل سات للسياحه"))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            @if (item.BillToday == (float)Convert.ToDouble(TempData["NilesatBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["NilesatBillTodayUpdate"]) == 0)
+            {
+                <td>
+                    @(item.BillToday)
+                </td>
+                <td>
+                    @(item.BillProfitThisMonth)
+                </td>
+
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @(item.BillToday)
+                </td>
+                <td class="font-weight-bold text-danger">
+                    @(item.BillProfitThisMonth)
+                </td>
+            }
+            @if (item.StatementDate == (float)Convert.ToDouble(TempData["NilesatStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["NilesatStatementDateUpdate"]) == 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+        </tr>
+            }
+
+
+            @foreach (var item in Model.Where(a => a.CompanyName == "نيس للسياحه"))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            @if (item.BillToday == (float)Convert.ToDouble(TempData["NiceBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["NiceBillTodayUpdate"]) == 0)
+            {
+                <td>
+                    @(item.BillToday)
+                </td>
+                <td>
+                    @(item.BillProfitThisMonth)
+                </td>
+
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @(item.BillToday)
+                </td>
+                <td class="font-weight-bold text-danger">
+                    @(item.BillProfitThisMonth)
+                </td>
+            }
+            @if (item.StatementDate == (float)Convert.ToDouble(TempData["NiceStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["NiceStatementDateUpdate"]) == 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+        </tr>
+            }
+
+
+            @foreach (var item in Model.Where(a => a.CompanyName == "المصريه العالميه للسياحه"))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            @if (item.BillToday == (float)Convert.ToDouble(TempData["EITBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["EITBillTodayUpdate"]) == 0)
+            {
+                <td>
+                    @(item.BillToday)
+                </td>
+                <td>
+                    @(item.BillProfitThisMonth)
+                </td>
+
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @(item.BillToday)
+                </td>
+                <td class="font-weight-bold text-danger">
+                    @(item.BillProfitThisMonth)
+                </td>
+            }
+            @if (item.StatementDate == (float)Convert.ToDouble(TempData["EITStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["EITStatementDateUpdate"]) == 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+            else
+            {
+                <td class="font-weight-bold text-danger">
+                    @Html.DisplayFor(modelItem => item.StatementDate)
+                </td>
+            }
+        </tr>
+            }
+
+
+
+        </tbody>
+        <tr class="bg-light">
+            <td class="font-weight-bold">الاجمالى</td>
+            <td class="font-weight-bold">@ViewBag.BillToday جنيه</td>
+            <td class="font-weight-bold">@ViewBag.BillProfitThisMonth جنيه</td>
+            <td class="font-weight-bold">@ViewBag.StatementDate جنيه</td>
+        </tr>
+
+
+        @foreach (var item in Model.Where(a => a.CompanyName == "آثار للسياحة والسفريات ذ.م.م"))
+        {
+    <tr class=" bg-light font-weight-bold">
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        @if (item.BillToday == (float)Convert.ToDouble(TempData["AtharAgmanBillTodayUpdate"]) || (float)Convert.ToDouble(TempData["AtharAgmanBillTodayUpdate"]) == 0)
+        {
+            <td>
+                @(item.BillToday) درهم
+            </td>
+            <td>
+                @(item.BillProfitThisMonth) درهم
+            </td>
+
+        }
+        else
+        {
+            <td class="font-weight-bold text-danger">
+                @(item.BillToday) درهم
+            </td>
+            <td class="font-weight-bold text-danger">
+                @(item.BillProfitThisMonth) درهم
+            </td>
+        }
+        @if (item.StatementDate == (float)Convert.ToDouble(TempData["AtharAgmanStatementDateUpdate"]) || (float)Convert.ToDouble(TempData["AtharAgmanStatementDateUpdate"]) == 0)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.StatementDate) درهم
+            </td>
+        }
+        else
+        {
+            <td class="font-weight-bold text-danger">
+                @Html.DisplayFor(modelItem => item.StatementDate) درهم
+            </td>
+        }
+    </tr>
+        }
+
+    </table>
+
+    <div class="form-group" style="margin-top:15px ;max-width: 200px;margin:auto">
+        <a asp-controller="Transactions" asp-action="AllStatementUpdate" class="btn btn-success form-control">تحديث</a>
+
+    </div>
+

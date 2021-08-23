@@ -1,0 +1,48 @@
+﻿@model TravelERP.Models.ViewModel.Transactions
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transactions</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Debit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Debit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Credit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Credit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Statement)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Statement)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

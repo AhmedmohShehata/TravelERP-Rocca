@@ -1,0 +1,93 @@
+﻿@model TravelERP.Models.ViewModel.Ezns
+<div style="font-size:20px">
+    @*Head Start*@
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+        </div>
+        <div class="col">
+            <div class="form-control border-info  shadow-sm rounded  h-75 ">
+                <h3 class="text-center ">اذن صرف نقدية</h3>
+
+            </div>
+            <label class="control-label font-weight-bold">رقم الاذن</label> : @Html.DisplayTextFor(model => model.EznId)
+
+        </div>
+        <div class=" col">
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+        </div>
+    </div>
+
+
+    <hr class="col-12  border-dark " style="border-width:medium">
+    @*Head End*@
+    @*Body Start*@
+
+
+    <div style="background-image:url('@Url.Content(@ViewBag.CompanyA4EsalImage)'); background-repeat:no-repeat; background-position:center; background-size:350px">
+        <div class="custom-control-inline col-12">
+            <div class="custom-control-inline col-8 py-1">
+                <label class="control-label font-weight-bold ">تحريراً فى</label> : @Html.DisplayFor(model => model.EznDate)
+            </div>
+            <div class="custom-control-inline">
+                <label asp-for="AmountWithdrawn" class="control-label font-weight-bold"></label> : @Html.DisplayFor(model => model.AmountWithdrawn) @(Model.CompanyId == 6 ? "درهم" : "جنيه")
+            </div>
+
+        </div>
+        <div class="py-1">
+            <label class="control-label font-weight-bold"> استلم السيد</label> :  @Html.DisplayFor(model => model.Name)
+        </div>
+        <div class="py-1">
+            <label class="control-label font-weight-bold">مــــبـــلــغ وقــــدره</label> : @ViewBag.PriceName
+        </div>
+
+        <div class="py-1">
+            <label class="control-label font-weight-bold">نـــــقـــداُ / فـــيـــــزا</label> : @Html.DisplayTextFor(model => model.PaymentMethod)
+        </div>
+        <div class="py-1">
+            <label class="control-label font-weight-bold">وذلـــك قـــــيـــمــة</label> : @Html.DisplayFor(model => model.Menu0) - @Html.DisplayFor(model => model.Menu1) - @Html.DisplayFor(model => model.Menu2) - @Html.DisplayFor(model => model.ExpenseName)
+
+        </div>
+        <br />
+        <div class="custom-control-inline col-12">
+            <div class=" col-5">
+                <label class="control-label font-weight-bold">مستلم النقديه</label>
+                <br />
+                <label class="control-label ">الآسم</label> : ..............................................
+                <br />
+                <label class="control-label ">التوقيع</label> : ............................................
+                <br />
+                <label class="control-label ">رقم البطاقة</label> : ....................................
+                <br />
+                <label class="control-label ">محرر الاذن</label> : @Html.DisplayFor(model => model.UserName)
+
+
+            </div>
+            <div class="col-3 align-self-center" align="center">
+                <label class="control-label font-weight-bold ">المراجع</label>
+                <br />
+                <label class="control-label ">...........................</label>
+            </div>
+            <div class="col-4 align-self-center" align="center">
+                <label class="control-label font-weight-bold  ">المدير المسؤل</label>
+                <br />
+                <label class="control-label ">...........................</label>
+            </div>
+
+        </div>
+        <hr class="col-12  border-dark " style="border-width:medium">
+
+    </div>
+    <div class="align-items-center" align="center">
+
+        @ViewBag.CompanyAddress
+        <br />
+        @ViewBag.CompanyPhones
+
+    </div>
+    <div class="text-sm-center mt-2" style="font-size:16px">
+        @ViewBag.DeveloperContacs
+    </div>
+
+</div>

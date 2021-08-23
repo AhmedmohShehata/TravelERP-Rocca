@@ -1,0 +1,47 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>الصلاحيات</h2>
+<br/>
+
+@if (Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-controller="Administration" asp-action="CreateRole">إنشاء صلاحيه جديده</a>
+    foreach (var role in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                معرف الصلاحيه : @role.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-text">@role.Name</h5>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id">تعديل</a>
+                <a class="btn btn-danger" asp-controller="Administration" asp-action="DeleteRole" asp-route-id="@role.Id">إلغاء</a>
+
+            </div>
+
+        </div>
+
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            لم يتم انشاء اى صلاحيات
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                اضغط على زر إنشاء لانشاء صلاحيات جديده
+            </h5>
+            <a class="btn btn-primary" style="width:auto" asp-controller="Roles" asp-action="Create">
+                إنشاء صلاحيه
+            </a>
+        </div>
+    </div>
+}

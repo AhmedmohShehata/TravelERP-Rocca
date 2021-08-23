@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "كل المستخدمين";
+}
+
+<h2>المستخدمين</h2>
+<br />
+
+@if (Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-controller="Account" asp-action="Register">إنشاء مستخدم جديد</a>
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                معرف المستخدم : @user.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-text">@user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-controller="Administration" asp-action="EditUser" asp-route-id="@user.Id">تعديل</a>
+                @*<a class="btn btn-danger" asp-controller="Administration" asp-action="DeleteUser" asp-route-id="@user.Id">إلغاء</a>*@
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            لم يتم انشاء اى مستخدم
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                اضغط على زر إنشاء لانشاء مستخدم جديه
+            </h5>
+            <a class="btn btn-primary" style="width:auto" asp-controller="Account" asp-action="Register">
+                إنشاء مستخدم
+            </a>
+        </div>
+    </div>
+}

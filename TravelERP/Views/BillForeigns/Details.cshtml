@@ -1,0 +1,92 @@
+﻿@model TravelERP.Models.BillForeign
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+            <h3 class="text-center text-info">فاتوره سياحه خارجيه رقم @Html.DisplayFor(model => model.BillId)</h3>
+        </div>
+        <hr />
+
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+            <h6 class="text-center font-weight-normal">
+                <strong>@Html.DisplayNameFor(model => model.BillDate) :</strong>
+                @Html.DisplayFor(model => model.BillDate)
+
+            </h6>
+        </div>
+    </div>
+</div>
+<div class="col-md-5">
+    <label style="text-decoration:underline;" class="text-info"> اسم العميل او الوكيل : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.CustomerOrSupplier.Name) -
+        @Html.DisplayFor(model => model.CustomerSupplier.Name) -
+        @Html.DisplayFor(model => model.Commnets)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> بـــيــــان : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.MenuLE0.M0_Name) -
+        @Html.DisplayFor(model => model.MenuLE1.M1_Name) -
+        @Html.DisplayFor(model => model.MenuLE2.M2_Name)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.AdultN) :</strong>
+        @Html.DisplayFor(model => model.AdultN) -
+        <strong>@Html.DisplayNameFor(model => model.ChildN) :</strong>
+        @Html.DisplayFor(model => model.ChildN)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.TicketFrom) :</strong>
+        @Html.DisplayFor(model => model.TicketFrom) -
+        <strong>@Html.DisplayNameFor(model => model.TicketTo) :</strong>
+        @Html.DisplayFor(model => model.TicketTo)
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> الشركه المصدره : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.TicketExport.Name)
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> سعر النت والبيع والربح والعموله : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        <strong>
+            @Html.DisplayNameFor(model => model.NetPrice) :
+        </strong>
+        @Html.DisplayFor(model => model.NetPrice)
+        <br />
+        <strong>
+            @Html.DisplayNameFor(model => model.CustomerPrice) :
+        </strong>
+        @Html.DisplayFor(model => model.CustomerPrice)
+        <br />
+        <strong>
+            @Html.DisplayName("الربح") :
+        </strong>
+        @((Model.CustomerPrice - Model.NetPrice))
+        <br />
+        <strong>
+            @Html.DisplayName("العموله 4%") :
+        </strong>
+        @(Model.EMPCommission)
+
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> معلومات الموظف : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        <strong>
+            @Html.DisplayNameFor(model => model.UserId) :
+        </strong>
+        @Html.DisplayFor(model => model.User.UserName)
+        <br />
+        <strong>
+            @Html.DisplayName("اسم الشركه") :
+        </strong>
+        @Html.DisplayFor(model => model.Company.Company_Name)
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">إنشاء فاتوره سياحه خارجيه</a>
+    <a asp-action="Index" class="btn btn-outline-primary">الرجوع للقائمه الرئيسيه</a>
+</div>

@@ -1,0 +1,79 @@
+﻿@model TravelERP.Models.SalaryData
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>إنشاء</h2>
+
+<h4>ربط المرتبات</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId">
+                    <option value="" hidden disabled selected></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_FingerPrintName" class="control-label"></label>
+                <select asp-for="EMP_FingerPrintName" class="form-control" asp-items="ViewBag.EMP_FingerPrintName">
+                    <option value="" hidden disabled selected></option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EMP_Name" class="control-label"></label>
+                <select asp-for="EMP_Name" class="form-control" asp-items="ViewBag.EMP_Name">
+                    <option value="" hidden disabled selected></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_Salary" class="control-label"></label>
+                <input asp-for="EMP_Salary" class="form-control" />
+                <span asp-validation-for="EMP_Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_OverTime" class="control-label"></label>
+                <input asp-for="EMP_OverTime" class="form-control" />
+                <span asp-validation-for="EMP_OverTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_Early" class="control-label"></label>
+                <input asp-for="EMP_Early" class="form-control" />
+                <span asp-validation-for="EMP_Early" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_Late" class="control-label"></label>
+                <input asp-for="EMP_Late" class="form-control" />
+                <span asp-validation-for="EMP_Late" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_Absent" class="control-label"></label>
+                <input asp-for="EMP_Absent" class="form-control" />
+                <span asp-validation-for="EMP_Absent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_WhatsApp" class="control-label"></label>
+                <input asp-for="EMP_WhatsApp" class="form-control" />
+                <span asp-validation-for="EMP_WhatsApp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMP_insurance" class="control-label"></label>
+                <input asp-for="EMP_insurance" class="form-control" />
+                <span asp-validation-for="EMP_insurance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,35 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "Commission Date";
+}
+
+<form asp-action="CommissionDateAll">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                <h3 class="text-center ">تقرير عمولات شامل للموظفين</h3>
+
+            </div>
+            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                <h6 class="text-center font-weight-normal">* من فضلك اختر من بين تاريخين حتى يم عرض النتائج بطريقه سليمه</h6>
+                <label class="font-weight-bold"><span style="color:red">*</span> من تاريخ :</label>
+                <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <div>
+                    <label class="font-weight-bold"><span style="color:red">*</span> الى تاريخ :</label>
+                    <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <input type="submit" value="بحث" class="btn btn-success form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+

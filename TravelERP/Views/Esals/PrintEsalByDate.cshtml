@@ -1,0 +1,82 @@
+﻿@model IEnumerable<TravelERP.Models.Esal>
+
+    @*Head Start*@
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+        </div>
+        <div class="col">
+            <div class="form-control border-info  shadow-sm rounded  h-75 ">
+                <h3 class="text-center ">تقرير الإيصالات لفتره</h3>
+
+            </div>
+            <label class="control-label font-weight-bold">من تاريخ</label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+            <label class="control-label font-weight-bold ">الى تاريخ</label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+
+        </div>
+        <div class=" col">
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+        </div>
+    </div>
+
+
+    <hr class="col-12  border-dark " style="border-width:medium">
+    @*Head End*@
+
+<table class="table table-hover" id="Esal">
+    <thead>
+        <tr class="table-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.EsalId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplier.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillIdId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuLE0.M0_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethodId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EsalId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EsalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerSupplier.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillIdId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE0.M0_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountPaid) ج
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

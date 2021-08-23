@@ -1,0 +1,31 @@
+﻿@model TravelERP.Models.Developer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>إنشاء</h2>
+
+<h4>رساله مطور</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea  asp-for="Message" class="form-control" row="5"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>

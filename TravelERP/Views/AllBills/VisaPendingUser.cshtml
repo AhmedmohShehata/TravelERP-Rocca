@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.BillCountViewModel>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h5 class="text-center ">تقرير تأشيرات الـ Pending للموظف </h5>
+
+        </div>
+        <label class="control-label font-weight-bold">من تاريخ</label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+        <label class="control-label font-weight-bold ">الى تاريخ</label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("الاسم")
+            </th>
+            <th>
+                @Html.DisplayName("المبلغ")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerSupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="width:500px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى عدد التأشيرات الـ Pending</td>
+                    <td class="font-weight-bold">@(Model.Sum(a=>a.Count))</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+

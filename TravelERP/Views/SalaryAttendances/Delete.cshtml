@@ -1,0 +1,69 @@
+﻿@model TravelERP.Models.SalaryAttendance
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من عمليه الحذف</h3>
+<div>
+    <h4>جهاز البصمه</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Normal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Normal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Actual)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Actual)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Late)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Late)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Early)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Early)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Absent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Absent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company.Company_Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-primary">العوده للقائمه الرئيسيه</a>
+    </form>
+</div>

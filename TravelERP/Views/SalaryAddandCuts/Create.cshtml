@@ -1,0 +1,63 @@
+﻿@model TravelERP.Models.SalaryAddandCut
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>إنشاء</h2>
+
+<h4>العمولات والخصومات</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EMP_Name" class="control-label"></label>
+                <select asp-for="EMP_Name" class="form-control" asp-items="ViewBag.EMP_Name"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FromDate" class="control-label"></label>
+                <input asp-for="FromDate" class="form-control" />
+                <span asp-validation-for="FromDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDate" class="control-label"></label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Omra_Add" class="control-label"></label>
+                <input asp-for="Omra_Add" class="form-control" />
+                <span asp-validation-for="Omra_Add" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bonus_Add" class="control-label"></label>
+                <input asp-for="Bonus_Add" class="form-control" />
+                <span asp-validation-for="Bonus_Add" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Whatsapp_Cut" class="control-label"></label>
+                <input asp-for="Whatsapp_Cut" class="form-control" />
+                <span asp-validation-for="Whatsapp_Cut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Other_Cut" class="control-label"></label>
+                <input asp-for="Other_Cut" class="form-control" />
+                <span asp-validation-for="Other_Cut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">العوده للقائمه الرئيسيه</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

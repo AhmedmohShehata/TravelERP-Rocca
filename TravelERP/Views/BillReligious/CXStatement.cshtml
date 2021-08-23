@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.Transactions>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h6 class="text-center ">تقرير مبيعات مقاصه شركه @TempData["NameCS"] </h6>
+
+        </div>
+        <label class="control-label font-weight-bold">من </label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+        <label class="control-label font-weight-bold ">الى </label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EDate)
+            </th>
+            <th>
+                @Html.DisplayName("تراكمى")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Debit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statement)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ decimal runningTotal = @ViewBag.OpeningBalance + @ViewBag.startTransactions; }
+
+        @foreach (var item in Model)
+        {
+            runningTotal += item.Debit - item.Credit;
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EDate)
+            </td>
+            <td>
+                @runningTotal
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Debit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statement)
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="row align-items-center">
+    <div class="col">
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="width:500px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr>
+                    <td>رصيد افتتاحى</td>
+                    <td>@ViewBag.OpeningBalance  @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr>
+                    <td>رصيد اول الفتره</td>
+                    <td>@ViewBag.startTransactions  @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+
+                <tr>
+                    <td>إجمالى المدين</td>
+                    <td>@Model.Sum(i => i.Debit)  @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr>
+                    <td>إجمالى الدائن</td>
+                    <td>( @Model.Sum(i => i.Credit) )  @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">الإجمالى</td>
+                    <td class="font-weight-bold">@(@ViewBag.OpeningBalance + @ViewBag.startTransactions + Model.Sum(i => i.Debit) - Model.Sum(i => i.Credit))  @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

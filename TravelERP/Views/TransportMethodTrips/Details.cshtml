@@ -1,0 +1,54 @@
+﻿@model TravelERP.Models.TransportMethodTrip
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TransportMethodTrip</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BillId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillIdId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillIdId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsBus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuLE0)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuLE0.M0_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuLE1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuLE1.M1_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuLE2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuLE2.M2_Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

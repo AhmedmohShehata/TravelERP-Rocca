@@ -1,0 +1,548 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hosting CheckOut</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    @*<img src="https://www.smarterasp.net/images/logo.png" alt="Alternate Text" />*@
+
+    <form asp-action="UnuserContactsInfoes">
+
+    <div class="row align-items-center mt-3 mb-3">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="width:500px;margin:auto">
+                <h3 class="text-center ">Price and subscribe plans</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-bordered" style="text-align:center; margin-left:auto;margin-right:auto;">
+        <thead>
+            <tr>
+                <th style="width:30%;text-align:left">
+                    <img src="https://www.smarterasp.net/images/window.png" alt="Alternate Text" />
+                </th>
+                <th style="background-color:snow">
+                    <img src="https://www.smarterasp.net/images/one.png" alt="Alternate Text" />
+                    <br />
+                    @Html.DisplayName("SEMI BASIC")
+                </th>
+                <th>
+                    <img src="https://www.smarterasp.net/images/Two.png" alt="Alternate Text" />
+                    <br />
+                    @Html.DisplayName("SEMI ADVANCE")
+                </th>
+                <th style="background-color:aliceblue">
+                    <img src="https://www.smarterasp.net/images/Three.png" alt="Alternate Text" />
+                    <br />
+                    @Html.DisplayName("SEMI PREMIUM")
+                </th>
+                <th>
+                    <img src="https://www.smarterasp.net/images/Four.png" alt="Alternate Text" />
+                    <br />
+                    @Html.DisplayName("SEMI ULTIMATE")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:30%;text-align:left">
+                    @Html.DisplayName("Monthly Fee")
+                </td>
+                <td style="background-color:snow">
+                    @("$30")
+                </td>
+                <td>
+                    @("$50")
+                </td>
+                <td style="background-color:aliceblue">
+                    @("$80")
+                </td>
+                <td>
+                    @("$130")
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%;text-align:left">
+                    @Html.DisplayName("Set Up")
+                </td>
+                <td style="background-color:snow">
+                    @Html.DisplayName("Free")
+                </td>
+                <td>
+                    @Html.DisplayName("Free")
+                </td>
+                <td style="background-color:aliceblue">
+                    @Html.DisplayName("Free")
+                </td>
+                <td>
+                    @Html.DisplayName("Free")
+                </td>
+            </tr>
+            <tr>
+                <td style="width:30%;text-align:left">
+                    @Html.DisplayName("Plan Name")
+                </td>
+                <td style="background-color:snow">
+                    @Html.DisplayName("W2000")
+                </td>
+                <td>
+                    @Html.DisplayName("W2050")
+                </td>
+                <td style="background-color:aliceblue">
+                    @Html.DisplayName("W2100")
+                </td>
+                <td>
+                    @Html.DisplayName("W2150")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="background-color:snow">
+                    <button class="btn btn-primary" asp-controller="UnuserContactsInfoes" asp-action="Create">Buy Now</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" asp-controller="UnuserContactsInfoes" asp-action="Create">Buy Now</button>
+                </td>
+                <td style="background-color:aliceblue">
+                    <button class="btn btn-primary" asp-controller="UnuserContactsInfoes" asp-action="Create">Buy Now</button>
+                </td>
+                <td>
+                    <button class="btn btn-primary" asp-controller="UnuserContactsInfoes" asp-action="Create">Buy Now</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link text-info" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        General hosting features
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body" style="text-align:center; margin-left:auto;margin-right:auto;">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th style="width:30%;text-align:left">
+                                    @Html.DisplayName("Webspace(GB)")
+                                </th>
+                                <th style="background-color:snow">
+                                    @Html.DisplayName("Unlimited")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Unlimited")
+                                </th>
+                                <th style="background-color:aliceblue">
+                                    @Html.DisplayName("Unlimited")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Unlimited")
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Number Of Site/IIS Entry")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("3")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("6")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("12")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Domain Name Hosted")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Bandwidth")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Static IP")
+                                </td>
+                                <td style="background-color:snow">
+
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Free Let's Encrypt SSL")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("-")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("-")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("FTP")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Access To Raw Log Files")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Web-Based Control Panel")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Domain Name")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("$12/Yr")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("$12/Yr")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("$12/Yr")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("$12/Yr")
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Domain Whois Privacy")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("$8/Yr")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("$8/Yr")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("$8/Yr")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("$8/Yr")
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Windows 2016 / 2012 Hosting Features
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body" style="text-align:center; margin-left:auto;margin-right:auto;">
+                    <table class="table table-bordered ">
+                        <tbody>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("IIS 10.X, IIS 8.X Manager Remote Access Allowed")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Remote Delegation Supported, Web Deploy")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Visual Studio 2019/2017/2015/2013/2012/2010")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("WebMatrix Support")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Full Trust And Medium Trust Supported")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Switch Between Integrated And Classic Mode")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("URL Rewrite Module 2")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Isolated Application Pool")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Run Multiple .NET Versions")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("Schedule Tasks / Cron Jobs")
+                                </td>
+                                <td style="background-color:snow">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                                <td>
+                                    <img width="30" height="Auto" src="https://www.smarterasp.net/images/click.png" alt="Alternate Text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:30%;text-align:left">
+                                    @Html.DisplayName("# Of Concurrent Connections")
+                                </td>
+                                <td style="background-color:snow">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td style="background-color:aliceblue">
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                                <td>
+                                    @Html.DisplayName("Unlimited")
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

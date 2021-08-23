@@ -1,0 +1,101 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.AllBillsViewModel>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h3 class="text-center ">تقرير عمولات الموظف شامل لفتره</h3>
+
+        </div>
+        <label class="control-label font-weight-bold">من تاريخ</label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+        <label class="control-label font-weight-bold ">الى تاريخ</label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@
+
+<table class="table table-hover" id="Esal">
+    <thead>
+        <tr class="table-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.BillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplierName)
+            </th>
+            <th>
+                @Html.DisplayName("بيان")
+            </th>
+            <th>
+                @Html.DisplayName("العموله")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td>
+                    @(item.BillDate.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrSupplierName) -
+                    @Html.DisplayFor(modelItem => item.CustomerSupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE0Name) -
+                    @Html.DisplayFor(modelItem => item.MenuLE1Name) -
+                    @Html.DisplayFor(modelItem => item.MenuLE1Name)
+                </td>
+                <td>
+                    @((item.Commission))  @(@ViewBag.CompanyId == 6 ? "د" : "ج")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="  table-dark  rounded " style="width:400px;margin:auto;margin-top:10px">
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">عموله الطيران</td>
+                    <td class="font-weight-bold">@ViewBag.billAirLine @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">عموله التأشيرات</td>
+                    <td class="font-weight-bold">@ViewBag.billVisas @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">عموله السياحه الداخليه</td>
+                    <td class="font-weight-bold">@ViewBag.billDomestic @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">عموله السياحه الخارجيه</td>
+                    <td class="font-weight-bold">@ViewBag.billForeign @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى العمولات</td>
+                    <td class="font-weight-bold">@(Model.Sum(i => i.Commission)) @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,218 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.EsalsHomePageViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2 class="mb-5">الصفحه الرئيسيه للإيصالات</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary"> إنشاء إيصال (اخرى)</a>
+    <a asp-action="CreateGroup" class="btn btn-primary">إنشاء إيصال (Group)</a>
+    <a asp-action="CreateReligious" class="btn btn-primary">إنشاء إيصال (سياحه دينيه)</a>
+</p>
+
+<table class="table table-hover display" id="Esal" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("#")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillIdId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuLE0)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+            {
+                <th width="120px">عمليات</th>
+
+            }
+            else
+            {
+                <th width="80px">عمليات</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EsalId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EsalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BillIdId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuLE0)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountPaid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentMethod)
+                    </td>
+                    <td>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && (item.EsalDate == @ViewBag.DateTimeNow) && !User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">معلومات</a>
+                        <a asp-action="Print" asp-route-id="@item.Id">طباعه</a>
+                    </td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+@section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && !User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Esal').DataTable({
+                    ajax: {
+                        url: "/api/Esals",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "esalId" },
+                        { data: "esalDate" },
+                        { data: "customerSupplier" },
+                        { data: "billIdId" },
+                        { data: "menuLE0" },
+                        { data: "amountPaid" },
+                        { data: "paymentMethod" },
+
+                        {
+                            data: "id", render: function (data, type, Esals)
+                            {
+                                if (Esals.esalDate === '@ViewBag.DateTimeNow') {
+                                    return "<a href='Esals//Details/" + Esals.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Esals/Print/" + Esals.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>" + " | " + "<a href='/Esals/Edit/" + Esals.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>";
+                                }
+                                else
+                                {
+                                    return "<a href='/Esals/Details/" + Esals.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Esals/Print/" + Esals.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>";
+                                }
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Esal').DataTable({
+                    ajax: {
+                        url: "/api/Esals",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "esalId" },
+                        { data: "esalDate" },
+                        { data: "customerSupplier" },
+                        { data: "billIdId" },
+                        { data: "menuLE0" },
+                        { data: "amountPaid" },
+                        { data: "paymentMethod" },
+
+                        {
+                            data: "id", render: function (data, type, Esals) {
+
+                                return "<a href='/Esals/Details/" + Esals.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Esals/Print/" + Esals.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>" + " | " + "<a href='/Esals/Edit/" + Esals.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>"+ " | " + "<a href='/Esals/Delete/" + Esals.id + "'><i class='material-icons' title='إلغاء' Style='color:red'>cancel</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && !User.IsInRole("تعديلات المدير") && !User.IsInRole("تعديلات"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#Esal').DataTable({
+                    ajax: {
+                        url: "/api/Esals",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "esalId" },
+                        { data: "esalDate" },
+                        { data: "customerSupplier" },
+                        { data: "billIdId" },
+                        { data: "menuLE0" },
+                        { data: "amountPaid" },
+                        { data: "paymentMethod" },
+
+                        {
+                            data: "id", render: function (data, type, Esals) {
+
+                                return "<a href='/Esals/Details/" + Esals.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/Esals/Print/" + Esals.id + "'><i class='material-icons' title='طباعه' Style='color:green'>local_printshop</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+}
+

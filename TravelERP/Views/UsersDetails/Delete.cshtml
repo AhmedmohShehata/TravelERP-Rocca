@@ -1,0 +1,33 @@
+﻿@model TravelERP.Models.UsersDetail
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من عمليه الحذف</h3>
+<div>
+    <h4>عموله موظف</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Commission)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Commission)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+    </form>
+</div>

@@ -1,0 +1,226 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.BillsHomePageViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>القائمه الرئيسيه لفواتير السياحة الخارجيه</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء فاتوره</a>
+</p>
+<table class="table table-hover display" id="BillForeigns" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("#")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplier)
+            </th>
+            <th>
+                @Html.DisplayName("تفاصيل")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPrice)
+            </th>
+            <th>
+                @Html.DisplayName("العموله")
+            </th>
+            <th>
+                @Html.DisplayName("الشركه المصدره")
+            </th>
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+            {
+                <th width="120px">عمليات</th>
+
+            }
+            else
+            {
+                <th width="80px">عمليات</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BillId)
+                    </td>
+                    <td>
+                        @(item.BillDate.Date.ToShortDateString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerSupplier.Name)  - @Html.DisplayFor(modelItem => item.Commnets)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuLE1.M1_Name) - @Html.DisplayFor(modelItem => item.MenuLE2.M2_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NetPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerPrice)
+                    </td>
+                    <td>
+                        @(item.EMPCommission)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketExport.Name)
+                    </td>
+                    <td>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && (item.BillDate.Date == @ViewBag.DateTimeNow) && !User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id"> تعديل</a><span> |</span>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">تفاصيل</a> |
+                        <a asp-action="CreateEsal" asp-route-id="@item.Id">ايصال</a>
+                    </td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+@section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات") && !User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#BillForeigns').DataTable({
+                    ajax: {
+                        url: "/api/BillForeigns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "billId" },
+                        { data: "billDate" },
+                        { data: "customerSupplier" },
+                        { data: "details" },
+                        { data: "netPrice" },
+                        { data: "customerPrice" },
+                        { data: "empCommission" },
+                        { data: "ticketExport" },
+
+                        {
+                            data: "id", render: function (data, type, BillForeigns)
+                            {
+                                if (BillForeigns.billDate === '@ViewBag.DateTimeNow') {
+                                    return "<a href='/BillForeigns/Details/" + BillForeigns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/BillForeigns/CreateEsal/" + BillForeigns.id + "'><i class='material-icons' title='إيصال' Style='color:green'>receipt</i></a>" + " | " + "<a href='/BillForeigns/Edit/" + BillForeigns.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>";
+                                }
+                                else
+                                {
+                                    return "<a href='/BillForeigns/Details/" + BillForeigns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/BillForeigns/CreateEsal/" + BillForeigns.id + "'><i class='material-icons' title='إيصال' Style='color:green'>receipt</i></a>";
+                                }
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#BillForeigns').DataTable({
+                    ajax: {
+                        url: "/api/BillForeigns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "billId" },
+                        { data: "billDate" },
+                        { data: "customerSupplier" },
+                        { data: "details" },
+                        { data: "netPrice" },
+                        { data: "customerPrice" },
+                        { data: "empCommission" },
+                        { data: "ticketExport" },
+
+                        {
+                            data: "id", render: function (data, type, BillForeigns) {
+
+                                return "<a href='/BillForeigns/Details/" + BillForeigns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/BillForeigns/CreateEsal/" + BillForeigns.id + "'><i class='material-icons' title='إيصال' Style='color:green'>receipt</i></a>" + " | " + "<a href='/BillForeigns/Edit/" + BillForeigns.id + "'><i class='material-icons' title='تعديل' Style='color:purple'>mode_edit</i></a>" + " | " + "<a href='/BillForeigns/Delete/" + BillForeigns.id + "'><i class='material-icons' title='إلغاء' Style='color:red'>cancel</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+    @if (signInManager.IsSignedIn(User) && !User.IsInRole("تعديلات المدير") && !User.IsInRole("تعديلات"))
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var table = $('#BillForeigns').DataTable({
+                    ajax: {
+                        url: "/api/BillForeigns",
+                        dataSrc: ""
+                    },
+
+                    columns: [
+                        { data: "billId" },
+                        { data: "billDate" },
+                        { data: "customerSupplier" },
+                        { data: "details" },
+                        { data: "netPrice" },
+                        { data: "customerPrice" },
+                        { data: "empCommission" },
+                        { data: "ticketExport" },
+
+                        {
+                            data: "id", render: function (data, type, BillForeigns) {
+
+                                return "<a href='/BillForeigns/Details/" + BillForeigns.id + "'><i class='material-icons' title='تفاصيل'>info</i></a>" + " | " + "<a href='/BillForeigns/CreateEsal/" + BillForeigns.id + "'><i class='material-icons' title='إيصال' Style='color:green'>receipt</i></a>";
+                            }
+                        },
+                    ],
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true,
+                    "order": [[0, "desc"]]
+
+                });
+            });
+        </script>
+
+    }
+}
+

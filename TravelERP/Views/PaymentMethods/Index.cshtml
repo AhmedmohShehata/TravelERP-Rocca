@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TravelERP.Models.PaymentMethod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>طرق الدفع</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء طريقه دفع</a>
+</p>
+<table class="table table-hover" id="PayMentMethod">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts
+    {
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#PayMentMethod').DataTable();
+        });
+    </script>
+}
+
+

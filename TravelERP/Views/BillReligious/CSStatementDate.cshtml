@@ -1,0 +1,238 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "Statement Date";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*<script>
+        $(function () {
+            $("#Name1").change(function () {
+                var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+                var ddsource = "#Name1";
+                $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                    var items = "";
+                    $("#Name2").empty();
+                    $.each(data, function (i, row) {
+                        items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                    });
+                    $("#Name2").html(items);
+                })
+            });
+        });
+
+    </script>*@
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h5 class="mb-0">
+                <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    تقرير معاملات مندوب الحج والعمره
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <form asp-action="CSStatementDate">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                <h3 class="text-center ">تقرير معاملات</h3>
+
+                            </div>
+                            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                <label class="font-weight-bold">الاسم</label>
+                                <select asp-for="Name2" id="Name2" class="form-control" asp-items="ViewBag.CustomerSupplierId">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+                                <label class="font-weight-bold">تصنيف</label>
+                                <select asp-for="Name1" id="Name1" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+
+                                <label class="font-weight-bold"> الى تاريخ :</label>
+                                <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                                <div class="form-group" style="margin-top:15px">
+                                    <input type="submit" value="بحث" asp-action="CXStatementDate" class="btn btn-success form-control" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h5 class="mb-0">
+                <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    تقرير معاملات عملاء الحج والعمره
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <form asp-action="CSStatementDate">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                <h3 class="text-center ">تقرير معاملات</h3>
+
+                            </div>
+                            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                <label class="font-weight-bold">تصنيف</label>
+                                <select asp-for="Name3" id="Name3" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+                                <label class="font-weight-bold">رحله</label>
+                                <select asp-for="Name4" id="Name4" class="form-control" asp-items="ViewBag.MenuLE2Id">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+
+                                <label class="font-weight-bold"> الى تاريخ :</label>
+                                <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                                <div class="form-group" style="margin-top:15px">
+                                    <input type="submit" value="بحث" asp-action="CStatementDate" class="btn btn-success form-control" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h5 class="mb-0">
+                <button class="btn" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    تقرير معاملات عملاء الحج والعمره( بألاسم)
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <form asp-action="CSStatementDate">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                <h3 class="text-center ">تقرير معاملات</h3>
+
+                            </div>
+                            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                <label class="font-weight-bold">تصنيف</label>
+                                <select asp-for="Name6" id="Name1" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+                                <label class="font-weight-bold">الاسم</label>
+                                @*<input type="text" name="Name5" value="" class="form-control" />*@
+                                <select asp-for="Name5" id="Name2" class="form-control" asp-items="ViewBag.CustomerId">
+                                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                </select>
+
+                                <div class="form-group" style="margin-top:15px">
+                                    <input type="submit" value="بحث" asp-action="OmraReportByNameDate" class="btn btn-success form-control" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    $(function () {
+        $("#Name3").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE2";
+            var ddsource = "#Name3";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name4").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name4").html(items);
+                //$("#ME1").hide("fast");
+            })
+        });
+    });
+
+</script>
+@*<script>
+
+    $(function () {
+        $("#Name5").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE2";
+            var ddsource = "#Name5";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name6").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name6").html(items);
+                //$("#ME1").hide("fast");
+            })
+        });
+    });
+
+</script>
+<script>
+
+    $(function () {
+        $("#Name6").change(function () {
+            var url = '@Url.Content("~/")' + "BillReligious/GetCustomersReligious";
+            var ddsource = "#Name6";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name7").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name7").html(items);
+                //$("#ME1").hide("fast");
+            })
+        });
+    });
+
+</script>*@
+<script>
+    $(document).ready(function () {
+          var Customer = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          remote: {
+            url: 'api/CustomerSuppliers?query=%QUERY',
+            wildcard: '%QUERY'
+          }
+        });
+
+        $('#Name5').typeahead({
+            minLength: 3,
+            highlight: true
+        }, {
+          name: 'customers',
+          display: 'name',
+          source: Customer
+});
+
+    });
+</script>

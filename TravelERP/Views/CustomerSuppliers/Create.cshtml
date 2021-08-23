@@ -1,0 +1,77 @@
+﻿@model TravelERP.Models.CustomerSupplier
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>العملاء والموردين</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PhoneNumber1" class="control-label"></label>
+                <input asp-for="PhoneNumber1" class="form-control" />
+                <span asp-validation-for="PhoneNumber1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber2" class="control-label"></label>
+                <input asp-for="PhoneNumber2" class="form-control" />
+                <span asp-validation-for="PhoneNumber2" class="text-danger"></span>
+            </div>
+            <div class="card">
+                <div class="card-header">معلومات جواز السفر</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="PassportNo" class="control-label"></label>
+                        <input asp-for="PassportNo" class="form-control" />
+                        <span asp-validation-for="PassportNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PassportExDate" class="control-label"></label>
+                        <input asp-for="PassportExDate" class="form-control" placeholder="MM" />
+                        <span asp-validation-for="PassportExDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Adrress" class="control-label"></label>
+                    <input asp-for="Adrress" class="form-control" />
+                    <span asp-validation-for="Adrress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <span style="color:red">*</span> <label asp-for="CustomerOrSupplierId" class="control-label"></label>
+                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("مدير") || User.IsInRole("مدير فرع")))
+                    {
+                        <select asp-for="CustomerOrSupplierId" class="form-control" asp-items="ViewBag.CustomerOrSupplierId"></select>
+                    }
+                    else
+                    {
+                        <select asp-for="CustomerOrSupplierId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+
+                    }
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="إنشاء" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-outline-success">الرجوع للقائمه الرئيسيه</a>
+                </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

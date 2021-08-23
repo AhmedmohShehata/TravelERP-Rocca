@@ -1,0 +1,358 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>aspnet-TravelERP-17DF2DA8-45EC-4C58-A2DA-0E61BC836FE9</UserSecretsId>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190416201646_UpdadeUser.cs" />
+    <Compile Remove="Data\Migrations\20190416201646_UpdadeUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190421103419_AddEsal.cs" />
+    <Compile Remove="Data\Migrations\20190421103419_AddEsal.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190421103616_AddEsal.cs" />
+    <Compile Remove="Data\Migrations\20190421103616_AddEsal.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190430180538_ChangeEsalPrimaryKey.cs" />
+    <Compile Remove="Data\Migrations\20190430180538_ChangeEsalPrimaryKey.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190518164427_AddMenustoEsal.cs" />
+    <Compile Remove="Data\Migrations\20190518164427_AddMenustoEsal.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190521161042_BillDomestic.cs" />
+    <Compile Remove="Data\Migrations\20190521161042_BillDomestic.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190523120244_EsalBillIdNull.cs" />
+    <Compile Remove="Data\Migrations\20190523120244_EsalBillIdNull.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190729194329_visa.cs" />
+    <Compile Remove="Data\Migrations\20190729194329_visa.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190810135024_EznsForEsalsAddCSCOS.cs" />
+    <Compile Remove="Data\Migrations\20190810135024_EznsForEsalsAddCSCOS.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190827172720_openingBalancesTable.cs" />
+    <Compile Remove="Data\Migrations\20190827172720_openingBalancesTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190831184516_EditOpeningBalanceAddMenuE0.cs" />
+    <Compile Remove="Data\Migrations\20190831184516_EditOpeningBalanceAddMenuE0.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190906113237_OpeningBalanceEditIdentity.cs" />
+    <Compile Remove="Data\Migrations\20190906113237_OpeningBalanceEditIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191002200003_Ezns.cs" />
+    <Compile Remove="Data\Migrations\20191002200003_Ezns.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191012195635_SeedUsersRolesMenus.cs" />
+    <Compile Remove="Data\Migrations\20191012195635_SeedUsersRolesMenus.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191023211006_add.cs" />
+    <Compile Remove="Data\Migrations\20191023211006_add.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191028162838_Personnel.cs" />
+    <Compile Remove="Data\Migrations\20191028162838_Personnel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191203184748_ezns.cs" />
+    <Compile Remove="Data\Migrations\20191203184748_ezns.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191224212828_SalaryTables.cs" />
+    <Compile Remove="Data\Migrations\20191224212828_SalaryTables.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191229150422_AddCompanyIdtoSalaryData.cs" />
+    <Compile Remove="Data\Migrations\20191229150422_AddCompanyIdtoSalaryData.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200108201749_AddByteToIds.cs" />
+    <Compile Remove="Data\Migrations\20200108201749_AddByteToIds.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200916162752_sdsd.cs" />
+    <Compile Remove="Data\Migrations\20200916162752_sdsd.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200916163224_fff.cs" />
+    <Compile Remove="Data\Migrations\20200916163224_fff.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200920155342_AddUtility.cs" />
+    <Compile Remove="Data\Migrations\20200920155342_AddUtility.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200920162636_AddUtility.cs" />
+    <Compile Remove="Data\Migrations\20200920162636_AddUtility.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200920164440_AddUtility.cs" />
+    <Compile Remove="Data\Migrations\20200920164440_AddUtility.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200920164743_AddUtility.cs" />
+    <Compile Remove="Data\Migrations\20200920164743_AddUtility.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210622195028_AddTransPortMethodToDB.cs" />
+    <Compile Remove="Data\Migrations\20210622195028_AddTransPortMethodToDB.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="CaptchaGen.NetCore" Version="1.0.2" />
+    <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
+    <PackageReference Include="Twitter.Typeahead" Version="0.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Administration\EditUserCompany.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\BillsByUserAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\BillsAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\BillsAllByUserDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\BillsAllDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CommissionByUserDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CommissionDateCompanies.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CommissionDateTotal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CommissionDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CommissionDateAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CSStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\AllBills\AirLinesStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\MenuLE2Date.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\MenuLE1Date.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\AllBills\CStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\AllBills\CSTStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\StatementByUserCommission.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaApprovedAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaApprovedAllDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingCompany.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingUser.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXTStatementAllDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXTStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CTStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\AirLinesStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXStatement.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXTStatementAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\CXTStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingUserDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingCompanyDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\VisaPendingAllDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\StatementCommissionCompanies.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\StatementCommissionTotal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\StatementCommission.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\StatementCommissionAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\UserBills.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\AllBills\UserBillsDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillAirLines\AirLinesStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillAirLines\AirLinesStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillAirLines\CreateEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillForeigns\CreateEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillDomestics\CreateEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\BillsAllDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\BillsAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CreateEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CSStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CStatementAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\OmraReportByName.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CXTStatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CTStatementAll.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CTStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CXStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillReligious\CXTStatement.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\BillVisas\CreateEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Esals\CreateReligious.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Esals\EsalsDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Esals\StatementEsals.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Ezns\EznsDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Ezns\CreateEFEReligious.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Ezns\StatementEzns.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MenuLE2\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MenuLE2\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MenuLE2\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Transactions\StatementBankDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Transactions\StatementDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\DatesSearches\EsalDate.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Esals\Print.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\EznForEsals\PrintEznForEsal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Ezns\PrintEzn.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MOJ">
+      <HintPath>C:\Users\HAMADA\Desktop\MOJ.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

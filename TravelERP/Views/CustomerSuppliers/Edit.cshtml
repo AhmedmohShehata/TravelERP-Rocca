@@ -1,0 +1,84 @@
+﻿@model TravelERP.Models.CustomerSupplier
+
+@{
+    ViewData["Title"] = "تعديل";
+}
+
+<div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+    <h4 class="text-center text-info">تعديل  @Model.Name</h4>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CompanyId" />
+
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="Name" class="control-label"></label>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("تعديلات المدير"))
+                {
+                    <input asp-for="Name" class="form-control" />
+
+                }
+                @if (signInManager.IsSignedIn(User) && !User.IsInRole("تعديلات المدير"))
+                {
+                    <input asp-for="Name" readonly class="form-control" />
+
+                }
+
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PhoneNumber1" class="control-label"></label>
+                <input asp-for="PhoneNumber1" class="form-control" />
+                <span asp-validation-for="PhoneNumber1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber2" class="control-label"></label>
+                <input asp-for="PhoneNumber2" class="form-control" />
+                <span asp-validation-for="PhoneNumber2" class="text-danger"></span>
+            </div>
+            <div class="card">
+                <div class="card-header">معلومات جواز السفر</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="PassportNo" class="control-label"></label>
+                        <input asp-for="PassportNo" class="form-control" />
+                        <span asp-validation-for="PassportNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PassportExDate" class="control-label"></label>
+                        <input asp-for="PassportExDate" class="form-control" placeholder="MM" />
+                        <span asp-validation-for="PassportExDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrress" class="control-label"></label>
+                <input asp-for="Adrress" class="form-control" />
+                <span asp-validation-for="Adrress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerOrSupplierId" class="control-label"></label>
+                <select asp-for="CustomerOrSupplierId" class="form-control" asp-items="ViewBag.CustomerOrSupplierid"></select>
+                <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">الرجوع للقائمه الرئيسيه</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

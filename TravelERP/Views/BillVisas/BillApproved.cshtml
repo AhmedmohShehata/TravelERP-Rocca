@@ -1,0 +1,107 @@
+﻿@model TravelERP.Models.BillVisa
+
+@{
+    ViewData["Title"] = "تعديل سعر النت";
+}
+
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+            <h3 class="text-center text-info">فاتوره تأشيره رقم @Html.DisplayFor(model => model.BillId)</h3>
+        </div>
+        <hr />
+
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+            <h6 class="text-center font-weight-normal">
+                @Html.DisplayNameFor(model => model.BillDate) :
+                @Html.DisplayFor(model => model.BillDate)
+
+            </h6>
+        </div>
+    </div>
+</div>
+<form asp-action="BillApproved">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CustomerOrSupplierId" />
+    <input type="hidden" asp-for="AdultN" />
+    <input type="hidden" asp-for="BillDate" />
+    <input type="hidden" asp-for="BillId" />
+    <input type="hidden" asp-for="BillState" />
+    <input type="hidden" asp-for="ChildN" />
+    <input type="hidden" asp-for="Commnets" />
+    <input type="hidden" asp-for="CompanyID" />
+    <input type="hidden" asp-for="CustomerPrice" />
+    <input type="hidden" asp-for="CustomerSupplierId" />
+    <input type="hidden" asp-for="EMPCommission" />
+    <input type="hidden" asp-for="MenuLE0Id" />
+    <input type="hidden" asp-for="MenuLE1Id" />
+    <input type="hidden" asp-for="MenuLE2Id" />
+    <input type="hidden" asp-for="PassportNo" />
+    <input type="hidden" asp-for="TicketExportId" />
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="ApprovedDate" />
+
+    <div class="col-md-4">
+        <label style="text-decoration:underline;" class="text-info"> اسم العميل او الوكيل : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            @Html.DisplayFor(model => model.CustomerOrSupplier.Name) -
+            @Html.DisplayFor(model => model.CustomerSupplier.Name) -
+            @Html.DisplayFor(model => model.Commnets)
+        </div>
+
+        <label style="text-decoration:underline;" class="text-info"> بـــيــــان : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            @Html.DisplayFor(model => model.MenuLE0.M0_Name) -
+            @Html.DisplayFor(model => model.MenuLE1.M1_Name) -
+            @Html.DisplayFor(model => model.MenuLE2.M2_Name)
+            <br />
+            <strong>@Html.DisplayNameFor(model => model.AdultN) :</strong>
+            @Html.DisplayFor(model => model.AdultN) -
+            <strong>@Html.DisplayNameFor(model => model.ChildN) :</strong>
+            @Html.DisplayFor(model => model.ChildN)
+        </div>
+        <label style="text-decoration:underline;" class="text-info"> الشركه المصدره : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            @Html.DisplayFor(model => model.TicketExport.Name)
+        </div>
+        <label style="text-decoration:underline;" class="text-info"> جواز السفر : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            @Html.DisplayFor(model => model.PassportNo)
+        </div>
+
+        <label style="text-decoration:underline;" class="text-info"> سعر النت والبيع : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            <strong>
+                @Html.DisplayNameFor(model => model.NetPrice) :
+            </strong>
+            <input asp-for="NetPrice" />
+            <br />
+            <strong>
+                @Html.DisplayNameFor(model => model.CustomerPrice) :
+            </strong>
+            @Html.DisplayFor(model => model.CustomerPrice)
+            <br />
+        </div>
+        <label style="text-decoration:underline;" class="text-info"> معلومات الموظف : </label>
+        <div class="form-group bg-light shadow-sm py-md-2">
+            <strong>
+                @Html.DisplayNameFor(model => model.UserId) :
+            </strong>
+            @Html.DisplayFor(model => model.User.UserName)
+            <br />
+            <strong>
+                @Html.DisplayName("اسم الشركه") :
+            </strong>
+            @Html.DisplayFor(model => model.Company.Company_Name)
+
+        </div>
+
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">إنشاء فاتوره تأشيرات</button>
+        <a asp-action="Index" class="btn btn-outline-primary">الرجوع للقائمه الرئيسيه</a>
+    </div>
+
+</form>

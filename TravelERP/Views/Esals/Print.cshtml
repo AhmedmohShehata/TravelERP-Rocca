@@ -1,0 +1,185 @@
+﻿@model TravelERP.Models.Esal
+<div style="font-size:20px" class="m-0">
+    @*Head Start*@
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+        </div>
+        <div class="col-5">
+            <div class="form-control border-info  shadow-sm rounded  h-75 ">
+                <h3 class="text-center ">إيصال إستلام نقدية</h3>
+
+            </div>
+            <label class="control-label font-weight-bold">رقم الإيصال</label> : @Html.DisplayTextFor(model => model.EsalId) -
+            <label class="control-label font-weight-bold ">رقم الفاتوره</label> : @Html.DisplayTextFor(model => model.BillIdId)
+
+        </div>
+        <div class=" col">
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+        </div>
+    </div>
+
+
+    <hr class="col-12  border-dark " style="border-width:medium">
+    @*Head End*@
+    @*Body Start*@
+
+
+    <div style="background-image:url('@Url.Content(@ViewBag.CompanyA4EsalImage)'); background-repeat:no-repeat; background-position:center; background-size:contain">
+        <div class="custom-control-inline col-12">
+            <div class="custom-control-inline col-8 py-1">
+                <label class="control-label font-weight-bold ">تحريراً فى</label> : @Html.DisplayFor(model => model.EsalDate)
+            </div>
+            <div class="custom-control-inline">
+                <label asp-for="AmountPaid" class="control-label font-weight-bold"></label> : @Html.DisplayFor(model => model.AmountPaid) @(Model.CompanyID == 6? "درهم" : "جنيه")
+             </div>
+
+        </div>
+        <div class="pt-1">
+            <label class="control-label font-weight-bold"> إستلمنا من السيد</label> :  @Html.DisplayFor(model => model.CustomerSupplier.Name) - @Html.DisplayFor(model => model.CustomerOrSupplier.Name)
+        </div>
+        <div class="pt-1">
+            <label class="control-label font-weight-bold">مــــبـــلــغ وقــــدره</label> : @ViewBag.PriceName
+        </div>
+
+        <div class="pt-1">
+            <label class="control-label font-weight-bold">نـــــقـــداُ / فـــيـــــزا</label> : @Html.DisplayTextFor(model => model.PaymentMethod.Name)
+        </div>
+        <div class="pt-1">
+            <label class="control-label font-weight-bold">وذلـــك قـــــيـــمــة</label> : @ViewBag.Byan
+        </div>
+        <br />
+        <div class="custom-control-inline col-12">
+            <div class="custom-control-inline col-8">
+                <label class="control-label font-weight-bold">توقيع المستلم</label>
+            </div>
+            <div class="custom-control-inline">
+                <label class="control-label font-weight-bold ">المراجع</label>
+            </div>
+        </div>
+        <div class="custom-control-inline col-12">
+            <div class="custom-control-inline col-8 ">
+                <label class="control-label  ">@Html.DisplayFor(model => model.User.UserName)</label>
+            </div>
+            <div class="custom-control-inline">
+                <label class="control-label ">...................</label>
+            </div>
+        </div>
+        <hr class="col-12  border-dark " style="border-width:medium">
+
+    </div>
+    <div class="row align-items-center">
+        <div class="col-9">
+            @Html.DisplayFor(model => model.Company.Company_Address)
+            <br />
+            @Html.DisplayFor(model => model.Company.Company_PhonesNumber)
+
+        </div>
+        <div class=" form-control border-info  shadow-sm rounded col-3 m-auto h-75">
+            <label class="control-label font-weight-bold  col">
+                <h5>
+                    هذا الإيصال يعتبر
+                    لاغى بعد تاريخ الرحلة
+                </h5>
+            </label>
+        </div>
+    </div>
+    <div  class="text-sm-center mt-2" style="font-size:16px" >
+        @ViewBag.DeveloperContacs
+    </div>
+
+</div>
+
+
+    <hr class="col  border-dark " style="border-width:thin; border-style:dotted">
+<br />
+
+<div style="font-size:20px">
+    @*Head Start*@
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+        </div>
+        <div class="col-5">
+            <div class="form-control border-info  shadow-sm rounded  h-75 ">
+                <h3 class="text-center ">إيصال إستلام نقدية</h3>
+
+            </div>
+            <label class="control-label font-weight-bold">رقم الإيصال</label> : @Html.DisplayTextFor(model => model.EsalId) -
+            <label class="control-label font-weight-bold ">رقم الفاتوره</label> : @Html.DisplayTextFor(model => model.BillIdId)
+        </div>
+        <div class=" col">
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+            <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+        </div>
+    </div>
+
+
+    <hr class="col-12  border-dark " style="border-width:medium">
+    @*Head End*@
+    @*Body Start*@
+
+
+<div style="background-image:url('@Url.Content(@ViewBag.CompanyA4EsalImage)'); background-repeat:no-repeat; background-position:center; background-size:contain">
+    <div class="custom-control-inline col-12">
+        <div class="custom-control-inline col-8 py-1">
+            <label class="control-label font-weight-bold ">تحريراً فى</label> : @Html.DisplayFor(model => model.EsalDate)
+        </div>
+        <div class="custom-control-inline">
+            <label asp-for="AmountPaid" class="control-label font-weight-bold"></label> : @Html.DisplayFor(model => model.AmountPaid) @(Model.CompanyID == 6 ? "درهم" : "جنيه")
+        </div>
+
+    </div>
+    <div class="pt-1">
+        <label class="control-label font-weight-bold"> إستلمنا من السيد</label> :  @Html.DisplayFor(model => model.CustomerSupplier.Name) - @Html.DisplayFor(model => model.CustomerOrSupplier.Name)
+    </div>
+    <div class="pt-1">
+        <label class="control-label font-weight-bold">مــــبـــلــغ وقــــدره</label> : @ViewBag.PriceName
+    </div>
+
+    <div class="pt-1">
+        <label class="control-label font-weight-bold">نـــــقـــداُ / فـــيـــــزا</label> : @Html.DisplayTextFor(model => model.PaymentMethod.Name)
+    </div>
+    <div class="pt-1">
+        <label class="control-label font-weight-bold">وذلـــك قـــــيـــمــة</label> : @ViewBag.Byan
+    </div>
+    <br />
+    <div class="custom-control-inline col-12">
+        <div class="custom-control-inline col-8">
+            <label class="control-label font-weight-bold">توقيع المستلم</label>
+        </div>
+        <div class="custom-control-inline">
+            <label class="control-label font-weight-bold ">المراجع</label>
+        </div>
+    </div>
+    <div class="custom-control-inline col-12">
+        <div class="custom-control-inline col-8 ">
+            <label class="control-label  ">@Html.DisplayFor(model => model.User.UserName)</label>
+        </div>
+        <div class="custom-control-inline">
+            <label class="control-label ">...................</label>
+        </div>
+    </div>
+    <hr class="col-12  border-dark " style="border-width:medium">
+
+</div>
+    <div class="row align-items-center">
+        <div class="col-9">
+            @Html.DisplayFor(model => model.Company.Company_Address)
+            <br />
+            @Html.DisplayFor(model => model.Company.Company_PhonesNumber)
+
+        </div>
+        <div class=" form-control border-info  shadow-sm rounded col-3 m-auto h-75">
+            <label class="control-label font-weight-bold  col">
+                <h5>
+                    هذا الإيصال يعتبر
+                    لاغى بعد تاريخ الرحلة
+                </h5>
+            </label>
+        </div>
+    </div>
+    <div class="text-sm-center mt-2" style="font-size:16px">
+        @ViewBag.DeveloperContacs
+    </div>

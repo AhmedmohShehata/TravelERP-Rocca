@@ -1,0 +1,58 @@
+﻿@model TravelERP.Models.BillReligious
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+            <h3 class="text-center text-info">فاتوره سياحه دينيه رقم @Html.DisplayFor(model => model.BillId)</h3>
+        </div>
+        <hr />
+
+        <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+            <h6 class="text-center font-weight-normal">
+                <strong>@Html.DisplayNameFor(model => model.BillDate) :</strong>
+                @Html.DisplayFor(model => model.BillDate)
+
+            </h6>
+        </div>
+    </div>
+</div>
+<div class="col-md-5">
+    <label style="text-decoration:underline;" class="text-info"> اسم العميل او الوكيل : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.CustomerOrSupplier.Name) -
+        @Html.DisplayFor(model => model.CustomerSupplier.Name) -
+        @Html.DisplayFor(model => model.Commnets)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> بـــيــــان : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.MenuLE0.M0_Name) -
+        @Html.DisplayFor(model => model.MenuLE1.M1_Name) -
+        @Html.DisplayFor(model => model.MenuLE2.M2_Name)
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> سعر البيع : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.CustomerPrice)
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> معلومات الموظف : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        <strong>
+            @Html.DisplayNameFor(model => model.UserId) :
+        </strong>
+        @Html.DisplayFor(model => model.User.UserName)
+        <br />
+        <strong>
+            @Html.DisplayName("اسم الشركه") :
+        </strong>
+        @Html.DisplayFor(model => model.Company.Company_Name)
+
+    </div>
+</div>
+<div>
+    <a asp-action="Create" class="btn btn-primary">إنشاء فاتوره سياحه دينيه</a>
+    <a asp-action="Index" class="btn btn-outline-primary">الرجوع للقائمه الرئيسيه</a>
+</div>

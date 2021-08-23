@@ -1,0 +1,90 @@
+﻿@model TravelERP.Models.Company
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>شركه او فرع</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Company_Name" class="control-label"></label>
+                <input asp-for="Company_Name" class="form-control" />
+                <span asp-validation-for="Company_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company_NameE" class="control-label"></label>
+                <input asp-for="Company_NameE" class="form-control" />
+                <span asp-validation-for="Company_NameE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company_Address" class="control-label"></label>
+                <input asp-for="Company_Address" class="form-control" />
+                <span asp-validation-for="Company_Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company_PhonesNumber" class="control-label"></label>
+                <input asp-for="Company_PhonesNumber" class="form-control" />
+                <span asp-validation-for="Company_PhonesNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CompanyLogo" class="control-label"></label>
+                <input type="file" name="fileLogo" id="fileLogo" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <span asp-validation-for="CompanyLogo" class="text-danger"></span>
+                <input asp-for="CompanyLogo" id="fileinputLogo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CompanyA4EsalImage" class="control-label"></label>
+                <input type="file" name="fileA4" id="fileA4" accept=".png,.jpg,.jpeg,.gif,.tif" class="btn btn-default" />
+                <span asp-validation-for="CompanyA4EsalImage" class="text-danger"></span>
+                <input asp-for="CompanyA4EsalImage" id="fileinputA4" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTimeCountry" class="control-label"></label>
+                <select asp-for="DateTimeCountry" class="form-control">
+                    <option value="Egypt Standard Time">مصر</option>
+                    <option value="Arabian Standard Time">الامارات العربيه المتحده</option>
+                </select>
+                <span asp-validation-for="DateTimeCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">الرجوع للقائمه الرئيسيه</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#fileLogo").change(function () {
+                if ($("#fileLogo").val() != "") {
+                    $("#fileinputLogo").prop("value", $("#fileLogo").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#fileA4").change(function () {
+                if ($("#fileA4").val() != "") {
+                    $("#fileinputA4").prop("value", $("#fileA4").val().split('\\').pop());
+                }
+            });
+        });
+    </script>
+
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

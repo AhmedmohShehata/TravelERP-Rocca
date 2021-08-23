@@ -1,0 +1,89 @@
+﻿@model IEnumerable<TravelERP.Models.SalaryData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>ربط المرتبات</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_FingerPrintName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_OverTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_Early)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_Late)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_Absent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_WhatsApp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_insurance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_FingerPrintName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_OverTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Early)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Late)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Absent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_WhatsApp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_insurance)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">معلومات</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

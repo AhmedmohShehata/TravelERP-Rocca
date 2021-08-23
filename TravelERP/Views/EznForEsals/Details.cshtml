@@ -1,0 +1,72 @@
+﻿@model TravelERP.Models.EznForEsal
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EznForEsal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EznId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EznId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EznDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EznDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerSupplier.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerSupplier.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountWithdrawn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountWithdrawn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company.Company_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuLE0)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuLE0.M0_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,47 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "Statement Date";
+}
+<form asp-action="CSTStatementAllDate">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                <h3 class="text-center "> تقرير معاملات لجميع الشركات</h3>
+
+            </div>
+            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+
+                <label class="font-weight-bold"><span style="color:red">*</span>  التاريخ :</label>
+                <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <div class="form-group" style="margin-top:15px">
+                    <input type="submit" value="بحث" asp-action="CXTStatementAllDate" class="btn btn-success form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#Name1").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#Name1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name2").html(items);
+            })
+        });
+    });
+
+</script>

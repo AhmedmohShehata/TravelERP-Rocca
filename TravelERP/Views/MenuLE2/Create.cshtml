@@ -1,0 +1,81 @@
+﻿@model TravelERP.Models.MenuLE2
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h3>إنشاء</h3>
+
+<h4>قائمه إيصالات منسدله 2</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE0Id" class="control-label"></label>
+                <select asp-for="MenuLE0Id" class="form-control" id="MenuLE0Id" name="MenuLE0Id" asp-items="ViewBag.MenuLE0Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE0Id" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE1Id" class="control-label"></label>
+                <select asp-for="MenuLE1Id" class="form-control" id="MenuLE1Id" name="MenuLE1Id" asp-items="@(new SelectList(string.Empty,"Id","M1_Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE1Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="M2_Name" class="control-label"></label>
+                <input asp-for="M2_Name" class="form-control" />
+                <span asp-validation-for="M2_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">الرجوع للقائمه الرئيسيه</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#MenuLE0Id").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE1";
+            var ddsource = "#MenuLE0Id";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE1Id").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE1Id").html(items);
+            })
+        });
+    });
+
+</script>
+<script>
+    $(function () {
+        $(document).load(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE1";
+            var ddsource = "#MenuLE0Id";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE1Id").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE1Id").html(items);
+            })
+        });
+    });
+
+</script>

@@ -1,0 +1,103 @@
+﻿@model TravelERP.Models.Esal
+
+@{
+    ViewData["Title"] = "Create1";
+}
+
+<h3>إنشاء</h3>
+
+<h4>إيصال استلام</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerOrSupplierId" class="control-label"></label>
+                <select asp-for="CustomerOrSupplierId" id="COS" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerSupplierId" class="control-label"></label>
+                <select asp-for="CustomerSupplierId" id="CS" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE0Id" class="control-label"></label>
+                <select asp-for="MenuLE0Id" id="MenuLE0Id" class="form-control" asp-items="ViewBag.MenuLE0Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE0Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="DepositDesc" class="control-label"></label>
+                <textarea asp-for="DepositDesc" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="DepositDesc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="AmountPaid" class="control-label"></label>
+                <input asp-for="AmountPaid" class="form-control" />
+                <span asp-validation-for="AmountPaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PaymentMethodId" class="control-label"></label>
+                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+                <span asp-validation-for="PaymentMethodId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">الرجوع للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });
+
+</script>
+    <script>
+
+    $(function () {
+        $("#MenuLE0Id").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE1Religious";
+            var ddsource = "#MenuLE0Id";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE1Id").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE1Id").html(items);
+                //$("#ME1").hide("fast");
+            })
+        });
+    });
+
+    </script>

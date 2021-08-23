@@ -1,0 +1,168 @@
+﻿@model TravelERP.Models.BillAirLine
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>فاتوره طيران</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerOrSupplierId" class="control-label"></label>
+                <select asp-for="CustomerOrSupplierId" id="COS" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerSupplierId" class="control-label"></label>
+                <select asp-for="CustomerSupplierId" id="CS" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE1Id" class="control-label"></label>
+                <select asp-for="MenuLE1Id" id="MenuLE1" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE1Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLE2Id" class="control-label"></label>
+                <select asp-for="MenuLE2Id" id="MenuLE2" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","M2_Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE2Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="Direction" class="control-label"></label>
+                <input asp-for="Direction" class="form-control" />
+                <span asp-validation-for="Direction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="TicketExportId" class="control-label"></label>
+                <select asp-for="TicketExportId" id="TicketExportId" class="form-control" asp-items="ViewBag.TicketExportId"></select>
+                <span asp-validation-for="TicketExportId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PNR" class="control-label"></label>
+                <input asp-for="PNR" class="form-control" />
+                <span asp-validation-for="PNR" class="text-danger"></span>
+                <span asp-validation-for="PNR" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="eTicketNumber">
+                <label asp-for="eTicketNumber" class="control-label"></label>
+                <input asp-for="eTicketNumber" class="form-control" />
+                <span asp-validation-for="eTicketNumber" class="text-danger"></span>
+                <span class="text-danger">فى حاله اختيار الشركه المنفذه IATA يرجى ادخال رقم التكت</span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="AdultN" class="control-label"></label>
+                <input asp-for="AdultN" class="form-control" />
+                <span asp-validation-for="AdultN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="ChildN" class="control-label"></label>
+                <input asp-for="ChildN" class="form-control" />
+                <span asp-validation-for="ChildN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="NetPrice" class="control-label"></label>
+                <input asp-for="NetPrice" class="form-control" />
+                <span asp-validation-for="NetPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="CustomerPrice" class="control-label"></label>
+                <input asp-for="CustomerPrice" class="form-control" />
+                <span asp-validation-for="CustomerPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="TicketFrom" class="control-label"></label>
+                <input asp-for="TicketFrom" class="form-control" />
+                <span asp-validation-for="TicketFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketTo" class="control-label"></label>
+                <input asp-for="TicketTo" class="form-control" />
+                <span asp-validation-for="TicketTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Commnets" class="control-label"></label>
+                <input asp-for="Commnets" class="form-control" />
+                <span asp-validation-for="Commnets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        $("#MenuLE1").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE2";
+            var ddsource = "#MenuLE1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE2").html(items);
+            })
+        });
+    });
+
+</script>
+<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });
+
+</script>
+
+@*<script>
+    $("#eTicketNumber").hide("slow");
+
+    $(function () {
+        $("#TicketExportId").change(function () {
+            var ddssource = "#TicketExportId";
+
+            if ($(ddssource).val() == 'Iata')
+            {
+                $("#eTicketNumber").hide("slow");
+            }
+            else {
+                $("#eTicketNumber").show("slow");
+            }
+
+
+        });
+    });
+
+</script>*@

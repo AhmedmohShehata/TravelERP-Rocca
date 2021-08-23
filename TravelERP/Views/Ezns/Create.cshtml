@@ -1,0 +1,120 @@
+﻿@model TravelERP.Models.Ezn
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>اذن مصروف</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLZ0Id" class="control-label"></label>
+                <select asp-for="MenuLZ0Id" id="MenuLZ0" class="form-control" asp-items="ViewBag.MenuLZ0Id">
+                    <option value="0" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLZ0Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLZ1Id" class="control-label"></label>
+                <select asp-for="MenuLZ1Id" id="MenuLZ1" class="form-control" asp-items="ViewBag.MenuLZ1Id">
+                    <option value="0" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLZ1Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLZ2Id" class="control-label"></label>
+                <select asp-for="MenuLZ2Id" id="MenuLZ2" class="form-control" asp-items="ViewBag.MenuLZ2Id">
+                    <option value="0" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLZ2Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="AmountWithdrawn" class="control-label"></label>
+                <input asp-for="AmountWithdrawn" class="form-control" />
+                <span asp-validation-for="AmountWithdrawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="ExpenseName" class="control-label"></label>
+                <textarea asp-for="ExpenseName" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="ExpenseName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PaymentMethodId" class="control-label"></label>
+                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+
+                <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#MenuLZ0").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLZ2/GetMenuLZ1";
+            var ddsource = "#MenuLZ0";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLZ1").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLZ1").html(items);
+            })
+        });
+    });
+
+</script>
+
+<script>
+    $(function () {
+        $("#MenuLZ1").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLZ2/GetMenuLZ2";
+            var ddsource = "#MenuLZ1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLZ2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLZ2").html(items);
+            })
+        });
+    });
+
+</script>
+<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });
+
+</script>
+
+

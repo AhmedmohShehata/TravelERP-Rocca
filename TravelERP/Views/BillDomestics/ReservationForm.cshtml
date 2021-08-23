@@ -1,0 +1,378 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.Transactions>
+@*Head Start*@
+@{
+    var Bill = ViewBag.Bill;
+}
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h3 class="text-center ">استماره حجز</h3>
+
+        </div>
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@
+<div class="col-12 table table-bordered border-dark" width="100%">
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>الاسم </strong>
+        </div>
+        <div class="col-10 border p-2">
+            <span>@Bill.Commnets</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>التليفون </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>@Bill.CustomerSupplier.PhoneNumber1</span>
+        </div>
+        <div class="col-5 border p-2">
+            <span>@Bill.CustomerSupplier.PhoneNumber2</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>العنوان </strong>
+        </div>
+        <div class="col-10 border p-2">
+            <span>@Bill.CustomerSupplier.Adrress</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>الرحله </strong>
+        </div>
+        <div class="col-10 border p-2">
+            <span>@Bill.MenuLE0.M0_Name - @Bill.MenuLE1.M1_Name - @Bill.MenuLE2.M2_Name</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>تاريخ الرحله </strong>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong>الذهاب </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>@Convert.ToDateTime(Bill.TicketFrom).ToShortDateString()</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong>العودة </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>@Convert.ToDateTime(Bill.TicketTo).ToShortDateString()</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>اسم الفندق </strong>
+        </div>
+        <div class="col-10 border py-2">
+            <span>@Bill.Accommodation</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-1">
+            <strong>عدد الافراد </strong>
+        </div>
+        <div class="col-1 table-secondary border  py-1">
+            <strong>بالغ </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>@(Bill.AdultN)</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong>طفل </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>@(Bill.ChildN)</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 table-secondary border  py-2">
+            <strong>التسكين </strong>
+        </div>
+        <div class="col-2 p-0">
+            <div class="table-secondary border">
+                <strong>مفرده </strong>
+            </div>
+            <div class="border">
+                <a class="form-row p1">&nbsp;</a>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="table-secondary border">
+                <strong>مزدوجه </strong>
+            </div>
+            <div class="border">
+                <a class="form-row p1">&nbsp;</a>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="table-secondary border">
+                <strong>ثلاثيه </strong>
+            </div>
+            <div class="border">
+                <a class="form-row p1">&nbsp;</a>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="table-secondary border">
+                <strong>سويت </strong>
+            </div>
+            <div class="border">
+                <a class="form-row p1">&nbsp;</a>
+            </div>
+        </div>
+        <div class="col-2 p-0">
+            <div class="table-secondary border">
+                <strong>اكسترا </strong>
+            </div>
+            <div class="border">
+                <a class="form-row p1">&nbsp;</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+<div class="row align-items-center">
+    <div style="max-width:500px ;margin:auto">
+        <h5>كشف الاسماء</h5>
+    </div>
+</div>
+
+<div class="col-12 table table-bordered border-dark" width="100%">
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 1 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 8 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 2 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 9 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 3 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 10 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 4 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 11 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 5 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 12 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 6 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 13 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 7 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-1 table-secondary border  py-2">
+            <strong> 14 </strong>
+        </div>
+        <div class="col-5 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 table-secondary border  py-2">
+            <h5> الـــحــساب :--- </h5>
+        </div>
+        <div class="col-2 table-secondary border  py-2">
+            <strong> التأشيرات </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-2 table-secondary border  py-2">
+            <strong> رسوم المغادره </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-2 table-secondary border  py-2">
+            <strong> المزارات </strong>
+        </div>
+        <div class="col-4 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+
+        <div class="col-6 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-6 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border p-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-3 table-secondary border  py-2">
+            <strong> الاجمالى </strong>
+        </div>
+        <div class="col-6 border p-2">
+            <span>&nbsp;</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 table-secondary border  py-2">
+            <strong> المدفوعات </strong>
+        </div>
+        <div class="col-3 table-secondary border  py-2">
+            <strong> رقم الايصال </strong>
+        </div>
+        <div class="col-6 table-secondary border  py-2">
+            <strong> تاريخ الدفع </strong>
+        </div>
+    </div>
+
+    @foreach (var item in Model.Where(a => a.Debit != 0))
+    {
+        <div class="row">
+            <div class="col-3 border p-2">
+                <span>
+                    @Html.DisplayFor(modelItem => item.Debit)
+                </span>
+            </div>
+            <div class="col-3 border p-2">
+                <span>
+                    @Html.DisplayFor(modelItem => item.EId)
+                </span>
+            </div>
+            <div class="col-6 border p-2">
+                <span>
+                    @Html.DisplayFor(modelItem => item.EDate)
+                </span>
+            </div>
+        </div>
+    }
+    <h5>ملاحظات : -----------------------------------------------------------</h5>
+    <br />
+    <div class=" row pr-3">
+        <h5>التاريخ : &nbsp; &nbsp;&nbsp;&nbsp; / &nbsp;&nbsp;&nbsp;&nbsp; /&nbsp;&nbsp; &nbsp; &nbsp; </h5> &nbsp;&nbsp;&nbsp;
+        <h5> المنفذ : -------------------------------------</h5>
+    </div>
+
+</div>
+<hr />
+<div class="row align-items-center">
+    <strong class="col">
+        @ViewBag.CompanyAddress
+        <br />
+        @ViewBag.CompanyPhones
+
+    </strong>
+</div>

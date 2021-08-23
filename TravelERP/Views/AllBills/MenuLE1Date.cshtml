@@ -1,0 +1,203 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "MenuLE1 Date";
+}
+
+<form asp-action="MenuLE1Date">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                <h3 class="text-center ">تقرير قوائم منسدله 1</h3>
+
+            </div>
+            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                <div class="form-group">
+                <label class="font-weight-bold"><span style="color:red">*</span> القوائم الرئيسيه</label>
+                    <select asp-for="Name1" id="MenuLE0" class="form-control" asp-items="ViewBag.MenuLE0Id">
+                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                    </select>
+                    <span asp-validation-for="Name1" class="text-danger"></span>
+                    <div class="form-group">
+                        <label class="font-weight-bold"><span style="color:red">*</span> القوائم الفرعيه 1</label>
+                        <select asp-for="Name2" id="MenuLE1" class="form-control" asp-items="ViewBag.MenuLE1Id">
+                            <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                        </select>
+                    </div>
+                </div>
+                @*<div>
+                    <label class="font-weight-bold"><span style="color:red">*</span> من تاريخ :</label>
+                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <label class="font-weight-bold"><span style="color:red">*</span> الى تاريخ :</label>
+                <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>*@
+                <div class="form-group" style="margin-top:15px">
+                    <input type="submit" value="بحث" asp-action="MenuLE1Date" class="btn btn-success form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+@*<div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h5 class="mb-0">
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        تقرير شامل معاملات مورد او وكيل او عميل
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                    <label class="font-weight-bold"> عميل ام مورد</label>
+                                    <select asp-for="Name1" id="Name1" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                    </select>
+                                    <label class="font-weight-bold">الاسم</label>
+                                    <select asp-for="Name2" id="Name2" class="form-control" asp-items="@(new SelectList(string.Empty,"Id","Name"))">
+                                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                    </select>
+
+                                    <label class="font-weight-bold"> من تاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                                    <label class="font-weight-bold"> الى تاريخ :</label>
+                                    <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h5 class="mb-0">
+                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        تقرير معاملات الشركه المنفذه
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                    <label class="font-weight-bold">الاسم</label>
+                                    <select asp-for="Name2" id="Name2" class="form-control" asp-items="ViewBag.TicketExportId">
+                                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                    </select>
+
+                                    <label class="font-weight-bold"> من تاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                                    <label class="font-weight-bold"> الى تاريخ :</label>
+                                    <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" asp-action="CStatementDate" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h5 class="mb-0">
+                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        تقرير معاملات مقاصه للشركه المنفذه
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                                    <label class="font-weight-bold">الاسم</label>
+                                    <select asp-for="Name2" id="Name2" class="form-control" asp-items="ViewBag.TicketExportId">
+                                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                                    </select>
+
+                                    <label class="font-weight-bold"> من تاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                                    <label class="font-weight-bold"> الى تاريخ :</label>
+                                    <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" asp-action="CXStatementDate" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#MenuLE0").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLE2/GetMenuLE1";
+            var ddsource = "#MenuLE0";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLE1").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLE1").html(items);
+            })
+        });
+    });
+
+</script>

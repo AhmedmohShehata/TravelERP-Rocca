@@ -1,0 +1,166 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "Statement Date";
+}
+<form asp-action="CSTStatementDate">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                <h3 class="text-center ">تقرير معاملات</h3>
+
+            </div>
+            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                <div class="form-group">
+                    <span style="color:red">*</span> <label class="control-label">التصنيف</label>
+                    <select class="form-control" asp-for="Name1" id="Name1" name="Name1" asp-items="ViewBag.CustomerOrSupplierId">
+                        <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                    </select>
+                </div>
+                <label class="font-weight-bold"><span style="color:red">*</span>  التاريخ :</label>
+                <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <div class="form-group" style="margin-top:15px">
+                    <input type="submit" value="بحث" asp-action="CXTStatementDate" class="btn btn-success form-control" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+@*<div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h5 class="mb-0">
+                    <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        تقرير مجمع شامل معاملات مورد او وكيل او عميل
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSTStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+
+                                    <label class="font-weight-bold">  التاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h5 class="mb-0">
+                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        تقرير مجمع معاملات الشركه المنفذه
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSTStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+
+                                    <label class="font-weight-bold">  التاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" asp-action="CTStatementDate" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h5 class="mb-0">
+                    <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        تقرير مجمع معاملات مقاصه للشركه المنفذه
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <form asp-action="CSTStatementDate">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                                    <h3 class="text-center ">تقرير معاملات</h3>
+
+                                </div>
+                                <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                                    <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+
+                                    <label class="font-weight-bold">  التاريخ :</label>
+                                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                                    <div class="form-group" style="margin-top:15px">
+                                        <input type="submit" value="بحث" asp-action="CXTStatementDate" class="btn btn-success form-control" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#Name1").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#Name1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name2").html(items);
+            })
+        });
+    });
+
+</script>

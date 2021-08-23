@@ -1,0 +1,170 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.navbar .dropdown-toggle, .navbar .dropdown-menu a {
+    cursor: pointer;
+}
+
+.navbar .dropdown-item.active, .navbar .dropdown-item:active {
+    color: inherit;
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.navbar .dropdown-item:focus, .navbar .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+@media (min-width: 767px) {
+    .navbar .dropdown-toggle:not(.nav-link)::after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: .5em;
+        vertical-align: 0;
+        border-bottom: .3em solid transparent;
+        border-top: .3em solid transparent;
+        border-left: .3em solid;
+    }
+}
+
+/*NavBar*/
+.bg-custom-2 {
+    background-image: linear-gradient(to right, #06407e,#17a2b7);
+    /*background-image: linear-gradient(to right, #25aae1, #30dd8a,#c135b5);*/
+    box-shadow: 0 1px 10px 0 #e7fbff;
+}
+/*Button primary*/
+.btn-primary {
+    background: linear-gradient(to right, #39a1c3, rgba(49, 196, 190, 0.75));
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: 0 1px 5px 0 rgba(49, 196, 190, 0.75);
+}
+/*Button success*/
+.btn-success {
+    background: linear-gradient(to right, #38AF5E, #31E86B);
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: 0 1px 5px 0 rgba(49, 196, 190, 0.75);
+}
+
+.btn-secondary {
+    background: linear-gradient(to right, #8d8d8d, #727272);
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: 0 1px 5px 0 #c1c1c1;
+}
+
+/*Login Block*/
+.LoginBlock {
+    background-image: linear-gradient(to right, #e7fbff, #ffffff);
+    border: 0px;
+}
+.font {
+    font-family: 'Cairo', sans-serif;
+}
+
+
+/*Typeahead*/
+.typeahead {
+    background-color: #fff;
+}
+
+    .typeahead:focus {
+        border: 2px solid #0097cf;
+    }
+
+.tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #999
+}
+
+.tt-menu {
+    width: 422px;
+    margin: 12px 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+    .tt-suggestion:hover {
+        cursor: pointer;
+        color: #fff;
+        background-color: #0097cf;
+    }
+
+    .tt-suggestion.tt-cursor {
+        color: #fff;
+        background-color: #0097cf;
+    }
+
+    .tt-suggestion p {
+        margin: 0;
+    }
+    /*Typeahead*/
+
+@media (min-width: 992px) and (orientation:landscape) {
+    .col-md-4 {
+        // some properties
+    }
+}
+
+@media (min-width: 992px) and (orientation:portrait) {
+    .col-md-4 {
+        // redefined
+    }
+}

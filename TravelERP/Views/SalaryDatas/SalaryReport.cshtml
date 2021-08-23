@@ -1,0 +1,166 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.SalaryReportViewModel>
+
+@{
+    ViewData["Title"] = "SalaryReport";
+}
+
+
+<div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-6 mt-2">
+                <div class="form-control border-light bg-light  shadow-sm rounded   mb-2" >
+                    <h5 class="text-center ">
+                        @Html.DisplayFor(modelItem => item.EMP_Name)
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.EMP_Salary)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_Salary)
+                    </div>
+
+                    <div class="col-2">
+                        @(item.EMP_Late.ToString("n2"))
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_Late)
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.EMP_WhatsApp)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_WhatsApp)
+                    </div>
+
+                    <div class="col-2">
+                        @(item.EMP_Early.ToString("n2"))
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_Early)
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @(item.EMP_OverTime.ToString("n2"))
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_OverTime)
+                    </div>
+
+                    <div class="col-2">
+                        @(item.EMP_Absent.ToString("n2"))
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_Absent)
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-2">
+                        @(item.Commission.ToString("n2"))
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.Commission)
+                    </div>
+
+
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.Whatsapp_Cut)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.Whatsapp_Cut)
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.Omra_Add)
+                    </div>
+                    <div class="col-4 " style="font-size:14px">
+                        @Html.DisplayName("ع حج وعمره")
+                    </div>
+
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.EMP_insurance)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.EMP_insurance)
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.Bonus_Add)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.Bonus_Add)
+                    </div>
+
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.loans)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.loans)
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-4">
+                    </div>
+
+                    <div class="col-2">
+                        @Html.DisplayFor(modelItem => item.Other_Cut)
+                    </div>
+                    <div class="col-4" style="font-size:14px">
+                        @Html.DisplayNameFor(modelItem => item.Other_Cut)
+                    </div>
+                </div>
+                <hr  class="mt-2 mb-1"/>
+                <div class="row">
+                    <div class="col-2">
+                        @(((item.EMP_Salary) + (item.EMP_WhatsApp) + (item.EMP_OverTime) + (item.Commission) + (item.Omra_Add) + (item.Bonus_Add)).ToString("n2") )
+                    </div>
+                    <div class="col-4 mr-3" style="font-size:14px">
+                        الاجمالى
+                    </div>
+
+                    <div class="col-2">
+                        @(((item.EMP_Late) + (item.EMP_Early) + (item.EMP_Absent) + (item.Whatsapp_Cut) + (item.EMP_insurance) + (item.loans) + (item.Other_Cut)).ToString("n2") )
+                    </div>
+                    <div class="col-3" style="font-size:14px">
+                        الاجمالى
+                    </div>
+                </div>
+
+                <div  class="bg-info text-white">
+                    <h6 class="text-center">
+                        @(((item.EMP_Salary) + (item.EMP_WhatsApp) + (item.EMP_OverTime) + (item.Commission) + (item.Omra_Add) + (item.Bonus_Add) -
+                                                                                                                                (item.EMP_Late) - (item.EMP_Early) - (item.EMP_Absent) - (item.Whatsapp_Cut) - (item.EMP_insurance) - (item.loans) - (item.Other_Cut)).ToString("n2")) : صافى المرتب
+                    </h6>
+                </div>
+            </div>
+        }
+
+    </div>
+    </div>
+
+
+

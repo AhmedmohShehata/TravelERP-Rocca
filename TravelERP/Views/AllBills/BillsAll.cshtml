@@ -1,0 +1,169 @@
+﻿@model IEnumerable<TravelERP.Models.ViewModel.AllBillsViewModel>
+@*Head Start*@
+<div class="row align-items-center">
+    <div class="col">
+        <img src="@Url.Content(@ViewBag.CompanyLogo)" height="100" width="100" />
+    </div>
+    <div class="col">
+        <div class="form-control border-info  shadow-sm rounded  h-75 ">
+            <h3 class="text-center ">تقرير مبيعات شامل للشركه لفتره</h3>
+
+        </div>
+        <label class="control-label font-weight-bold">من تاريخ</label> : @Convert.ToDateTime(@TempData["StartDate"]).ToShortDateString() -
+        <label class="control-label font-weight-bold ">الى تاريخ</label> : @Convert.ToDateTime(@TempData["EndDate"]).ToShortDateString()
+
+    </div>
+    <div class=" col">
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyName)</h3>
+        <h3 class="text-center ">@Url.Content(@ViewBag.CompanyNameE)</h3>
+    </div>
+</div>
+
+
+<hr class="col-12  border-dark " style="border-width:medium">
+@*Head End*@
+
+<table class="table table-hover" id="Esal">
+    <thead>
+        <tr class="table-dark">
+            <th>
+                @Html.DisplayName("#")
+            </th>
+            <th>
+                @Html.DisplayName("نوع")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerSupplierName)
+            </th>
+            <th>
+                @Html.DisplayName("بيان")
+            </th>
+            <th>
+                @Html.DisplayName("س النت")
+            </th>
+            <th>
+                @Html.DisplayName("س بيع")
+            </th>
+            <th>
+                @Html.DisplayName("عموله")
+            </th>
+            <th>
+                @Html.DisplayName("ع موظف")
+            </th>
+            <th>
+                @Html.DisplayName("الربح")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillType)
+                </td>
+                <td>
+                    @item.BillDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerOrSupplierName) - @Html.DisplayFor(modelItem => item.CustomerSupplierName) - @Html.DisplayFor(modelItem => item.Commnets) - شـ مصدره @Html.DisplayFor(modelItem => item.TicketExportName) - @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuLE0Name) - @Html.DisplayFor(modelItem => item.MenuLE1Name) - @Html.DisplayFor(modelItem => item.MenuLE2Name) -
+
+                </td>
+                <td>
+                    @((item.NetPrice))
+                </td>
+                <td>
+                    @((item.CustomerPrice))
+                </td>
+                <td>
+                    @((item.CustomerPrice - item.NetPrice))
+                </td>
+                <td>
+                    @(item.Commission)
+                </td>
+                <td>
+                    @((item.CustomerPrice - item.NetPrice) - item.Commission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row align-items-center">
+    <div class="col">
+        <div class="  table-dark  rounded " style="width:400px;margin:auto;margin-top:10px">
+
+            <table class="table">
+                <tr class="table-dark">
+                    <td class="font-weight-bold">صافى ربح الطيران</td>
+                    <td class="font-weight-bold">@ViewBag.billAirLine @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-light text-dark">
+                    <td>صافى ربح التأشيرات Approved</td>
+                    <td>@Model.Where(a => a.BillType == "تأشيرات").Where(a => a.BillState == true).Sum(a => a.CustomerPrice - a.NetPrice - a.Commission) @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-light text-dark">
+                    <td>صافى ربح التأشيرات Pending</td>
+                    <td>@Model.Where(a => a.BillType == "تأشيرات").Where(a => a.BillState == false).Sum(a => a.CustomerPrice - a.NetPrice - a.Commission) @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">اجمالى صافى ربح التأشيرات</td>
+                    <td class="font-weight-bold">@ViewBag.billVisas @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">صافى ربح السياحه الداخليه</td>
+                    <td class="font-weight-bold">@ViewBag.billDomestic @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">صافى ربح السياحه الخارجيه</td>
+                    <td class="font-weight-bold">@ViewBag.billForeigns @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+                <tr class="table-dark">
+                    <td class="font-weight-bold">صافى الربح</td>
+                    <td class="font-weight-bold">@(Model.Sum(i => i.CustomerPrice - i.NetPrice - i.Commission)) @(@ViewBag.CompanyId == 6 ? "درهم" : "جنيه")</td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+@section scripts
+    {
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#Esal').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5', 'excelHtml5', 'print'
+                ],
+                paging: false
+            });
+        });
+    </script>
+}

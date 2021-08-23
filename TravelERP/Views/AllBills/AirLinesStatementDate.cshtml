@@ -1,0 +1,69 @@
+﻿@model TravelERP.Models.DatesSearch
+
+@{
+    ViewData["Title"] = "Statement Date";
+}
+
+<form asp-action="AirLinesStatementDate">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                <h3 class="text-center ">تقرير معاملات</h3>
+
+            </div>
+            <div class="form-control border-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto;margin-top:10px">
+                <h6 class="text-center font-weight-normal">* من فضلك اختر كل القوائم حتى يم عرض النتائج بطريقه سليمه</h6>
+                <label class="font-weight-bold"><span style="color:red">*</span> الاسم</label>
+                <select asp-for="Name2" id="Name2" class="form-control">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                    <option value="1">طيران العربيه</option>
+                    <option value="2">طيران الجزيره</option>
+                    <option value="3">طيران فلاى دبى</option>
+                    <option value="4">طيران فلاى ايجيبت</option>
+                    <option value="5">Iata</option>
+                    <option value="6">فهد مسقط</option>
+                    <option value="7">مسقط المدهش</option>
+                    <option value="8">مسقط ربا الاندلس</option>
+                    <option value="9">مسقط الموسى</option>
+                    <option value="10">الامارات</option>
+
+                </select>
+                <span asp-validation-for="Name2" class="text-danger"></span>
+                <div>
+                    <label class="font-weight-bold"><span style="color:red">*</span> من تاريخ :</label>
+                    <input type="date" asp-for="StartDate" id="StartDate" name="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <label class="font-weight-bold"><span style="color:red">*</span> الى تاريخ :</label>
+                <input type="date" asp-for="EndDate" id="EndDate" name="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <div class="form-group" style="margin-top:15px">
+                    <input type="submit" value="بحث" class="btn btn-success form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#Name1").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#Name1";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#Name2").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Name2").html(items);
+            })
+        });
+    });
+
+</script>

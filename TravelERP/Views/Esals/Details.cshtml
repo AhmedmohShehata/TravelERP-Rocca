@@ -1,0 +1,46 @@
+﻿@model TravelERP.Models.Esal
+
+@{
+    ViewData["Title"] = "Details";
+}
+    <div>
+        <div class="row align-items-center">
+            <div class="col-md">
+                <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+                    <h3 class="text-center text-info">معلومات الإيصال والفاتوره</h3>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label style="text-decoration:underline;" class="text-info"> معلومات الايصال : </label>
+            <div class="form-group bg-light shadow-sm py-md-2">
+                <label asp-for="EsalId" class="control-label"></label> : @Html.DisplayFor(model => model.EsalId)
+                <br />
+                <label asp-for="EsalDate" class="control-label"></label> : @Html.DisplayFor(model => model.EsalDate)
+                <br />
+                <label asp-for="CustomerSupplier.Name" class="control-label"></label> : @Html.DisplayFor(model => model.CustomerSupplier.Name) - @Html.DisplayFor(model => model.CustomerOrSupplier.Name)
+                <br />
+                <label asp-for="AmountPaid" class="control-label"></label> : @Html.DisplayFor(model => model.AmountPaid) @(Model.CompanyID == 6 ? "درهم" : "جنيه")
+                <br />
+                <label asp-for="PaymentMethodId" class="control-label"></label> : @Html.DisplayFor(model => model.PaymentMethod.Name)
+
+            </div>
+
+            <label style="text-decoration:underline;" class="text-info"> معلومات الفاتوره : </label>
+            <div class="form-group bg-light shadow-sm py-md-2">
+                <label asp-for="BillIdId" class="control-label"></label> : @Html.DisplayFor(model => model.Id)
+                <br />
+                <label class="control-label">تاريخ الفاتوره</label> : @ViewBag.BillDate
+            </div>
+
+            <label style="text-decoration:underline;" class="text-info"> بـــيــــان : </label>
+            <div class="form-group bg-light shadow-sm py-md-2">
+                @ViewBag.Byan
+            </div>
+        </div>
+    </div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">الرجوع للقائمه الرئيسيه</a>
+</div>

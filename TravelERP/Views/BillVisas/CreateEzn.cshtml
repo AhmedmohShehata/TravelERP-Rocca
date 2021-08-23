@@ -1,0 +1,84 @@
+﻿@model TravelERP.Models.Ezn
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>إنشاء</h3>
+
+<h4>اذن لرحله</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEzn">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="BillId" value="@ViewBag.IDBill" />
+            <input type="hidden" asp-for="MenuLE0Id" value="@ViewBag.MenuLE0Id" />
+            <input type="hidden" asp-for="MenuLE1Id" value="@ViewBag.MenuLE1Id" />
+            <input type="hidden" asp-for="MenuLE2Id" value="@ViewBag.MenuLE2Id" />
+            <input type="hidden" asp-for="BillIdId" value="@ViewBag.BillId" />
+            <div class="form-group">
+                <span style="color:red">*</span> <label class="control-label"> عميل ام مورد</label>
+                <select asp-for="CustomerOrSupplierId" id="COS" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label class="control-label">الاسم</label>
+                <select asp-for="CustomerSupplierId" id="CS" class="form-control" asp-items="ViewBag.CustomerSupplierId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="CustomerSupplierId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">القوائم</label>
+                <span class="form-control">@ViewBag.MenuLE</span>
+            </div>
+
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="AmountWithdrawn" class="control-label"></label>
+                <input asp-for="AmountWithdrawn" class="form-control" />
+                <span asp-validation-for="AmountWithdrawn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="ExpenseName" class="control-label"></label>
+                <textarea asp-for="ExpenseName" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="ExpenseName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="PaymentMethodId" class="control-label"></label>
+                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" asp-controller="BillVisas" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });
+
+</script>

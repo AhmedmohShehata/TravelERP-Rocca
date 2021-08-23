@@ -1,0 +1,64 @@
+﻿@model TravelERP.Models.MenuLZ2
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h3>إنشاء</h3>
+
+<h4>قائمه اذون منسدله 2</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLZ0Id" class="control-label"></label>
+                <select asp-for="MenuLZ0Id" class="form-control" id="MenuLZ0Id" asp-items="ViewBag.MenuLZ0Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLZ0Id" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="MenuLZ1Id" class="control-label"></label>
+                <select asp-for="MenuLZ1Id" class="form-control" id="MenuLZ1Id" asp-items="@(new SelectList(string.Empty,"Id","M1_Name"))">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLZ1Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span style="color:red">*</span> <label asp-for="M2_Name" class="control-label"></label>
+                <input asp-for="M2_Name" class="form-control" />
+                <span asp-validation-for="M2_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">الرجوع للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#MenuLZ0Id").change(function () {
+            var url = '@Url.Content("~/")' + "MenuLZ2/GetMenuLZ1";
+            var ddsource = "#MenuLZ0Id";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#MenuLZ1Id").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MenuLZ1Id").html(items);
+            })
+        });
+    });
+
+</script>

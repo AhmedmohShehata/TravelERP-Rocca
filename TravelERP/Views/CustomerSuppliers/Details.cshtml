@@ -1,0 +1,55 @@
+﻿@model TravelERP.Models.CustomerSupplier
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row align-items-center">
+    <div class="col-md">
+        <div class="form-control border-light bg-light  shadow-sm rounded  h-75 " style="max-width:500px;margin:auto">
+            <h3 class="text-center text-info">@Model.CustomerOrSupplier.Name</h3>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<div class="col-md-5">
+    <label style="text-decoration:underline;" class="text-info"> @Html.DisplayNameFor(model => model.Name) : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> @Html.DisplayNameFor(model => model.PhoneNumber1) : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.PhoneNumber1)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> @Html.DisplayNameFor(model => model.PhoneNumber2) : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.PhoneNumber2)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> @Html.DisplayNameFor(model => model.Email) : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <label style="text-decoration:underline;" class="text-info"> @Html.DisplayNameFor(model => model.Adrress) : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        @Html.DisplayFor(model => model.Adrress)
+    </div>
+    <label style="text-decoration:underline;" class="text-info"> معلومات جواز السفر : </label>
+    <div class="form-group bg-light shadow-sm py-md-2">
+        <strong>@Html.DisplayNameFor(model => model.PassportNo) :</strong>
+        @Html.DisplayFor(model => model.PassportNo) -
+    <br />  
+        <strong>@Html.DisplayNameFor(model => model.PassportExDate) :</strong>
+        @Html.DisplayFor(model => model.PassportExDate)
+
+    </div>
+
+</div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-outline-primary">الرجوع للقائمه الرئيسيه</a>
+    </div>

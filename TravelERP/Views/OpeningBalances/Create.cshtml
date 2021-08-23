@@ -1,0 +1,91 @@
+﻿@model TravelERP.Models.OpeningBalance
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>إنشاء</h2>
+
+<h4>الارصده الافتتاحيه</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card">
+                <div class="card-header">معلومات العميل او الشركه</div>
+                <div class="card-body">
+                    @*<div class="form-group">
+                        <label asp-for="CustomerOrSupplierId" class="font-weight-bold"></label>
+                        <select asp-for="CustomerOrSupplierId" id="COS" class="form-control" asp-items="ViewBag.CustomerOrSupplierId">
+                            <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                        </select>
+                        <span asp-validation-for="CustomerOrSupplierId" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="CustomerSupplierId" class="font-weight-bold"></label>
+                        <select asp-for="CustomerSupplierId" id="CS" class="form-control" asp-items="ViewBag.CustomerSupplierId">
+                            <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                        </select>
+                        <span asp-validation-for="CustomerSupplierId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatementTypeId" class="font-weight-bold"></label>
+                <select asp-for="StatementTypeId" id="StatementTypeId" class="form-control" asp-items="ViewBag.StatementTypeId">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="StatementTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MenuLE0Id" class="font-weight-bold"></label>
+                <select asp-for="MenuLE0Id" id="MenuLE0" class="form-control" asp-items="ViewBag.MenuLE0Id">
+                    <option value="" hidden disabled selected>من فضلك اختر من القائمه ...</option>
+                </select>
+                <span asp-validation-for="MenuLE0Id" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Balance" class="font-weight-bold"></label>
+                <input asp-for="Balance" class="form-control"  placeholder="ادخل المبلغ بالموجب او السالب" style="text-align:right"/>
+                <span asp-validation-for="Balance" class="text-danger"></span>
+                <br />
+                <div class="alert alert-primary" role="alert">
+                    <p>
+                        * فى حاله ادخال الرقم بالسالب فهذا يعنى ان هذا المبلغ نريد دفعه للطرف التانى
+                    </p>
+                    <p>
+                        * فى حاله ادخال الرقم بالموجب فهذا يعنى ان هذا المبلغ نريد تحصيله من الطرف التانى
+                    </p>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-outline-success">العوده للقائمه الرئيسيه</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*<script>
+    $(function () {
+        $("#COS").change(function () {
+            var url = '@Url.Content("~/")' + "CustomerSuppliers/GetCustomerSuppliers";
+            var ddsource = "#COS";
+            $.getJSON(url, { id: $(ddsource).val() }, function (data) {
+                var items = "";
+                $("#CS").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#CS").html(items);
+            })
+        });
+    });*@
+
+</script>

@@ -1,0 +1,52 @@
+﻿@model TravelERP.Models.OpeningBalance
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>الغاء</h2>
+
+<h3>هل انت متأكد من عمليه الحذف؟</h3>
+<div>
+    <h4>الرصيد الافتتاحى</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerOrSupplier.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerOrSupplier.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerSupplier.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerSupplier.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuLE0Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuLE0.M0_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatementTypeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StatementType.Name)
+        </dd>
+
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-primary">العوده للقائمه الرئيسيه</a>
+    </form>
+</div>

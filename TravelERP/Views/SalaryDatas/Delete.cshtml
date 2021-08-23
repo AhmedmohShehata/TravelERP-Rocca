@@ -1,0 +1,81 @@
+﻿@model TravelERP.Models.SalaryData
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من عمليه الحذف؟</h3>
+<div>
+    <h4>ربط المرتبات</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_FingerPrintName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_FingerPrintName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Salary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_OverTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_OverTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Early)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Early)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Late)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Late)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_Absent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_Absent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_WhatsApp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_WhatsApp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_insurance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMP_insurance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-danger">العوده للقائمه الرئيسيه</a>
+    </form>
+</div>

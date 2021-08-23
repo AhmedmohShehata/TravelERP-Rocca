@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TravelERP.Models.SalaryAddandCut>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>العمولات والخصومات</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إنشاء</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EMP_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FromDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Omra_Add)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bonus_Add)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Whatsapp_Cut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Other_Cut)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Omra_Add)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bonus_Add)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Whatsapp_Cut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Other_Cut)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">تعديل</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">معلومات</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
